@@ -9,7 +9,7 @@ function apiCall(req, res) {
     const url = `https://tastedive.com/api/similar?q=pulp+fiction`
     request(url, function (error, response, data) {
         if (!error && response.statusCode == 200) {
-            let recommendations = JSON.parse(data).Similar.Results
+            let recommendations = JSON.parse(data)
             console.log(recommendations)
             res.send(recommendations)
         } else if (error) throw error

@@ -10,6 +10,17 @@ class ApiTest extends React.Component {
         console.log("response: ", response)
         const data = await response.json()
         console.log("data: ", data)
+
+        // fetch("/api")
+        //     .then(res => res.json())
+        //     .then(
+        //         (result) => {
+        //             console.log("result: ", result)
+        //         },
+        //         (error) => {
+        //             console.log("error: ", error)
+        //         }
+        //     )
     }
 
     render() {
