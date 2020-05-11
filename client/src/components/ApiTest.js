@@ -1,31 +1,39 @@
 import React from "react"
+import Container from "./Container"
 
 class ApiTest extends React.Component {
     state = {
+        data: [],
+        searchQuery: ""
     }
 
     async apiCall() {
-        const url = `/api`
+        const url = `/api/${this.state.searchQuery}`
         const response = await fetch(url)
-        console.log("response: ", response)
         const data = await response.json()
         console.log("data: ", data)
+    }
 
-        // fetch("/api")
-        //     .then(res => res.json())
-        //     .then(
-        //         (result) => {
-        //             console.log("result: ", result)
-        //         },
-        //         (error) => {
-        //             console.log("error: ", error)
-        //         }
-        //     )
+    handleInputChange = event => {
+        const { name, value } = event.target
+        this.setState({
+            [name]: value
+        })
     }
 
     render() {
         return (
-            <button className="btn btn-danger mb-2" id="apiTestButton" onClick={() => this.apiCall()}>Search</button>
+            <Container>
+                <div id="searchBox">
+                    <h3>Search for a Movie or TV Show</h3>
+                    <form className="form-inline">
+                        <div className="form-group mb-2">
+                            <input type="text" name="searchQuery" value={this.state.searchQuery} onChange={(event) => this.handleInputChange(event)} className="form-control" id="searchQuery" placeholder="Movie or TV Show Name" />
+                        </div>
+                    </form>
+                    <button className="btn btn-danger mb-2" id="apiTestButton" onClick={() => this.apiCall()}>Search</button>
+                </div>
+            </Container>
         )
     }
 }
