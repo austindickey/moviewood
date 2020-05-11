@@ -1,0 +1,61 @@
+/* =================================
+            Body
+================================= */
+
+body {
+    /* background-image: url(../img/bg.png); */
+}
+
+.contentHolder {
+    min-height: calc(100vh - 131px);
+}
+
+/* =================================
+            NavBar
+================================= */
+
+.navbar {
+    background-color: #525252;
+    color: #fff;
+}
+
+.navbar-nav a {
+    color: #fff;
+}
+
+.navbar-nav a:hover {
+    text-decoration: none;
+    color: #F66363;
+}
+
+.navbar-nav .active {
+    color: #F66363;
+}
+
+.logo img {
+    padding: 5px 15px;
+    height: 60px;
+}
+
+/* =================================
+            Footer
+================================= */
+
+footer {
+    width: 100%;
+    height: 75px;
+    background-color: #525252;
+    color: #fff;
+    text-align: center;
+    padding-top: 25px;
+    font-size: 18px;
+}
+
+footer a {
+    color: #F66363;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: #fff;
+}
