@@ -1,14 +1,14 @@
 import React from "react"
 import Container from "../Container"
 
-function IndvFilm() {
+function Occasion() {
   return (
     <Container>
       <div className="contentHolder">
-        <h1>Individual Film</h1>
+        <h1>Search by Occasion</h1>
       </div>
     </Container>
   )
 }
 
-export default IndvFilm
+export default Occasion

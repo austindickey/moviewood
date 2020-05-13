@@ -17,8 +17,17 @@ function Navbar() {
         <Link onClick={() => getRoute("/")} to="/" className={route === "/" ? "nav-link active" : "nav-link"}>
           Home
         </Link>
-        <Link onClick={() => getRoute("/indvfilm")} to="/indvfilm" className={route === "/indvfilm" ? "nav-link active" : "nav-link"}>
-          Individual Film
+        <Link onClick={() => getRoute("/movies")} to="/movies" className={route === "/movies" ? "nav-link active" : "nav-link"}>
+          Search by Movie
+        </Link>
+        <Link onClick={() => getRoute("/tv")} to="/tv" className={route === "/tv" ? "nav-link active" : "nav-link"}>
+          Search by TV Show
+        </Link>
+        <Link onClick={() => getRoute("/occasion")} to="/occasion" className={route === "/occasion" ? "nav-link active" : "nav-link"}>
+          Search by Occasion
+        </Link>
+        <Link onClick={() => getRoute("/favorites")} to="/favorites" className={route === "/favorites" ? "nav-link active" : "nav-link"}>
+          Your Favorites
         </Link>
       </div>
     </nav>

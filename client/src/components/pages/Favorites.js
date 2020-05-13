@@ -1,16 +1,14 @@
 import React from "react"
 import Container from "../Container"
 
-function Home() {
+function Favorites() {
   return (
-      
     <Container>
       <div className="contentHolder">
-        <h1>Home Page</h1>
+        <h1>Your Favorites</h1>
       </div>
     </Container>
-    
   )
 }
 
-export default Home
+export default Favorites
