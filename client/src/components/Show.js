@@ -29,10 +29,10 @@ class Show extends React.Component {
                         <h3>Search for a TV Show</h3>
                         <form className="form-inline">
                             <div className="form-group mb-2">
-                                <input type="text" name="searchQuery" value={this.state.searchQuery} onChange={(event) => this.handleInputChange(event)} className="form-control" id="searchQuery" placeholder="Movie or TV Show Name" />
+                                <input type="text" name="searchQuery" value={this.state.searchQuery} onChange={(event) => this.handleInputChange(event)} className="form-control" id="searchQuery" placeholder="TV Show Name" />
                             </div>
                         </form>
-                        <button className="btn btn-danger mb-2" id="apiTestButton" onClick={() => this.showSearch()}>Search</button>
+                        <button className="btn btn-danger mb-2" id="showSearch" onClick={() => this.showSearch()}>Search</button>
                     </div>
                 </div>
             </Container>

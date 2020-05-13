@@ -11,7 +11,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg">
       <a className="logo" href="/">
-        Logo {/* <img src={window.location.origin + "/img/bookstack.png"} alt="Logo"/> */}
+        <img src={window.location.origin + "/img/logo.png"} alt="Logo"/>
       </a>
       <div className="navbar-nav">
         <Link onClick={() => getRoute("/")} to="/" className={route === "/" ? "nav-link active" : "nav-link"}>
