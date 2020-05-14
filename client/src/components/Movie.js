@@ -1,17 +1,18 @@
 import React from "react"
 import Container from "./Container"
+import { Results, SingleResult } from "./Results"
 
 class Movie extends React.Component {
     state = {
-        data: [],
+        movies: [],
         searchQuery: ""
     }
 
     async movieSearch() {
         const url = `/api/movie/${this.state.searchQuery}`
         const response = await fetch(url)
-        const data = await response.json()
-        console.log("data: ", data)
+        const movies = await response.json()
+        this.setState({movies})
     }
 
     handleInputChange = event => {
@@ -22,6 +23,7 @@ class Movie extends React.Component {
     }
 
     render() {
+        let movies = this.state.movies
         return (
             <Container>
                 <div className="contentHolder">
@@ -32,8 +34,34 @@ class Movie extends React.Component {
                                 <input type="text" name="searchQuery" value={this.state.searchQuery} onChange={(event) => this.handleInputChange(event)} className="form-control" id="searchQuery" placeholder="Movie Name" />
                             </div>
                         </form>
-                        <button className="btn btn-danger mb-2" id="movieSearch" onClick={() => this.movieSearch()}>Search</button>
+                        <button className="btn btn-danger mb-2" id="movieSearchButton" onClick={() => this.movieSearch()}>Search</button>
                     </div>
+
+                    {!movies.length ? (
+                        <Results>
+                            <h3 id="noResults">No Recommendations to Display</h3>
+                        </Results>
+                    ) : (   
+                            <Results>
+
+                                <h3 id="yourRecs">Your Recommendations</h3>
+
+                                {movies.map((movie, i) => {
+
+                                    return (
+                                        <SingleResult
+                                            key={i}
+                                            title={movie.title}
+                                            filmImg={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                            btnText={"Add to Favorites"}
+                                            btnClassNames={"btn btn-danger saveMovie"}
+                                            // clickFunc={() => this.saveMovie(movie)}
+                                        />
+                                    )
+                                })}
+                            </Results>
+                        )}
+
                 </div>
             </Container>
         )

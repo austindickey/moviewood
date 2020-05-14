@@ -7,7 +7,7 @@ body {
 }
 
 .contentHolder {
-    min-height: calc(100vh - 166px);
+    min-height: calc(100vh - 266px);
 }
 
 /* =================================
@@ -45,6 +45,84 @@ body {
 
 .navbar-nav a:last-child:after {
     content: " ";
+}
+
+/* =================================
+        Search Bar
+================================= */
+
+#searchBox {
+    /* background-image: url(../img/banner.png); */
+    margin-top: 50px;
+    padding: 35px 50px;
+    text-align: center;
+    border: 5px solid #525252;
+    border-radius: 8px;
+}
+
+#searchBox form,
+#searchBox .form-inline,
+#searchBox .form-group {
+    width: 100%;
+}
+
+#searchQuery {
+    width: 80%;
+    margin: 25px auto;
+} 
+
+#movieSearchButton {
+    margin: auto;
+}
+
+/* =================================
+            Results
+================================= */
+
+#noResults {
+    width: 100%;
+    padding: 35px 50px;
+    text-align: center;
+    border: 5px solid #525252;
+    border-radius: 8px;
+}
+
+#yourRecs {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+#results {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.singleResult {
+    margin: 10px;
+    text-align: center;
+}
+
+.buttonHolder{
+    max-width: 200px;
+}
+
+.buttonHolder button{
+    margin-bottom: 10px;
+}
+
+.singleResult h5 {
+    max-width: 200px;
+    margin: 15px auto;
+}
+
+.singleResult img {
+    width: 200px;
+    height: 300px;
+    margin: 0 auto;
+    border: 5px solid #F66363;
 }
 
 /* =================================
