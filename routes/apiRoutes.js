@@ -6,6 +6,7 @@ require("dotenv").config()
 function movieSearch(req, res) {
     const tmdbApiKey = process.env.tmdbApiKey
     let searchQuery = req.params.search
+    let namesOnly = []
     
     const url = `https://tastedive.com/api/similar?type=movies&q=${searchQuery}`
 
@@ -16,36 +17,37 @@ function movieSearch(req, res) {
             console.log("Recommendations: ", recommendations)
 
             let movieData = []
+            const promiseArr = []
 
             for (let i = 0; i < recommendations.length; i++) {
+
+                namesOnly.push(recommendations[i].Name.toLowerCase())
+
                 const singleUrl = `https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&language=en-US&page=1&query=${recommendations[i].Name}`
-                axios.get(singleUrl)
-                    .then(singleResponse => {
-                        let single = singleResponse.data.results
+
+                promiseArr.push(axios.get(singleUrl))
+
+            }
+
+            Promise.all(promiseArr).then(singleResponse => {
                         
-                        for (let x = 0; x < single.length; x++) {
+                for (let x = 0; x < singleResponse.length; x++) {
+                    let single = singleResponse[x].data.results
 
-                            if (single[x].title.toLowerCase() === recommendations[i].Name.toLowerCase()) {
-                                console.log("Single[i]: ", single[x])
-                                movieData.push(single[x])
-                                break
-                            }
-
+                    for (let z = 0; z < single.length; z++) {
+                        if (namesOnly.includes(single[z].title.toLowerCase())) {
+                            movieData.push(single[z])
+                            break
                         }
-                        
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
+                    }
 
-            }
+                }
 
-            if (movieData.length === recommendations.length) {
-                res.send(movieData) // I still have to find someway to tell it to wait to send the data
-            }
+                res.send(movieData)
+
+            })
 
         })
-        .then()
         .catch(err => {
             console.log(err)
         })
