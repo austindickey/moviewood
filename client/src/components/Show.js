@@ -1,17 +1,18 @@
 import React from "react"
 import Container from "./Container"
+import { Results, SingleResult } from "./Results"
 
 class Show extends React.Component {
     state = {
-        data: [],
+        shows: [],
         searchQuery: ""
     }
 
     async showSearch() {
         const url = `/api/tv/${this.state.searchQuery}`
         const response = await fetch(url)
-        const data = await response.json()
-        console.log("data: ", data)
+        const shows = await response.json()
+        this.setState({shows})
     }
 
     handleInputChange = event => {
@@ -22,6 +23,7 @@ class Show extends React.Component {
     }
 
     render() {
+        let shows = this.state.shows
         return (
             <Container>
                 <div className="contentHolder">
@@ -34,6 +36,32 @@ class Show extends React.Component {
                         </form>
                         <button className="btn btn-danger mb-2" id="showSearch" onClick={() => this.showSearch()}>Search</button>
                     </div>
+
+                    {!shows.length ? (
+                        <Results>
+                            <h3 id="noResults">No Recommendations to Display</h3>
+                        </Results>
+                    ) : (   
+                            <Results>
+
+                                <h3 id="yourRecs">Your Recommendations</h3>
+
+                                {shows.map((shows, i) => {
+
+                                    return (
+                                        <SingleResult
+                                            key={i}
+                                            title={shows.name}
+                                            filmImg={`https://image.tmdb.org/t/p/w500${shows.poster_path}`}
+                                            btnText={"Add to Favorites"}
+                                            btnClassNames={"btn btn-danger saveMovie"}
+                                            // clickFunc={() => this.saveMovie(movie)}
+                                        />
+                                    )
+                                })}
+                            </Results>
+                        )}
+
                 </div>
             </Container>
         )
