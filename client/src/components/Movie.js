@@ -24,6 +24,7 @@ class Movie extends React.Component {
 
     render() {
         let movies = this.state.movies
+        
         return (
             <Container>
                 <div className="contentHolder">
@@ -50,11 +51,13 @@ class Movie extends React.Component {
 
                                     return (
                                         <SingleResult
+                                            allData={movie}
                                             key={i}
                                             title={movie.title}
                                             filmImg={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                             btnText={"Add to Favorites"}
                                             btnClassNames={"btn btn-danger saveMovie"}
+                                            detailsClickFunc={ () => this.props.setFilm(movie) }
                                             // clickFunc={() => this.saveMovie(movie)}
                                         />
                                     )

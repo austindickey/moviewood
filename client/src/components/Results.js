@@ -1,10 +1,12 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 
 export function Results({ children }) {
     return <div id="results">{children}</div>
 }
 
 export function SingleResult({
+    movie,
     filmImg,
     title,
     btnText,
@@ -18,7 +20,9 @@ export function SingleResult({
             <h5>{title}</h5>
             <div className="buttonHolder">
                 <button className={btnClassNames} onClick={dbClickFunc}>{btnText}</button>
-                <button className={"btn btn-danger viewDetails"} onClick={detailsClickFunc}>View Details</button>
+                <Link onClick={detailsClickFunc} to="/singleFilm" className={"btn btn-danger viewDetails"}>
+                    View Details
+                </Link>
             </div>
         </div>
     )

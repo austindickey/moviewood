@@ -1,10 +1,10 @@
 import React from "react"
 import Movie from "../Movie"
 
-function MovieSearch() {
+function MovieSearch(props) {
   return (
       
-    <Movie/>
+    <Movie {...props}/>
     
   )
 }
