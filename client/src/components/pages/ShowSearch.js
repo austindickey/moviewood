@@ -1,10 +1,10 @@
 import React from "react"
 import Show from "../Show"
 
-function ShowSearch() {
+function ShowSearch(props) {
   return (
       
-    <Show/>
+    <Show {...props}/>
     
   )
 }

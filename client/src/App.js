@@ -18,7 +18,7 @@ function App() {
         <Navbar />
         <Route exact path="/" component={Home} />
         <Route exact path="/movies" component={() => <MovieSearch setFilm={setFilm}/>} />
-        <Route exact path="/tv" component={ShowSearch} />
+        <Route exact path="/tv" component={() => <ShowSearch setFilm={setFilm}/>} />
         <Route exact path="/occasion" component={Occasion} />
         <Route exact path="/favorites" component={Favorites} />
         <Route exact path="/singleFilm" component={() => <SingleFilm film={film}/>} />

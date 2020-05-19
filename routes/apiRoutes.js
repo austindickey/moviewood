@@ -4,11 +4,12 @@ require("dotenv").config()
 // const controller = require("../controllers/userController")
 
 function movieSearch(req, res) {
+    const tasteDiveApiKey = process.env.tasteDiveApiKey
     const tmdbApiKey = process.env.tmdbApiKey
     let searchQuery = req.params.search
     let namesOnly = []
     
-    const url = `https://tastedive.com/api/similar?type=movies&q=${searchQuery}`
+    const url = `https://tastedive.com/api/similar?type=movies&q=${searchQuery}&k=${tasteDiveApiKey}`
 
     axios.get(url)
         .then(response => {
@@ -59,7 +60,7 @@ function showSearch(req, res) {
     let searchQuery = req.params.search
     let namesOnly = []
     
-    const url = `https://tastedive.com/api/similar?type=shows&q=${searchQuery}`
+    const url = `https://tastedive.com/api/similar?type=shows&q=${searchQuery}&k=${tasteDiveApiKey}`
 
     axios.get(url)
         .then(response => {

@@ -46,15 +46,16 @@ class Show extends React.Component {
 
                                 <h3 id="yourRecs">Your Recommendations</h3>
 
-                                {shows.map((shows, i) => {
+                                {shows.map((show, i) => {
 
                                     return (
                                         <SingleResult
                                             key={i}
-                                            title={shows.name}
-                                            filmImg={`https://image.tmdb.org/t/p/w500${shows.poster_path}`}
+                                            title={show.name}
+                                            filmImg={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
                                             btnText={"Add to Favorites"}
                                             btnClassNames={"btn btn-danger saveMovie"}
+                                            detailsClickFunc={ () => this.props.setFilm(show) }
                                             // clickFunc={() => this.saveMovie(movie)}
                                         />
                                     )
