@@ -14,7 +14,14 @@ export default class OccasionForm extends Component {
 
                     <form id="formBody" action="/search" method="GET">
                         <div className="form-group">
-                            <label htmlFor="formAdults">Kid Friendly?</label>
+                            <label htmlFor="formType">Movie or TV Show?</label>
+                            <select name="type" className="form-control choose" id="formType" required>
+                                <option value="movie">Movie</option>
+                                <option value="tv">TV Show</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="formAdults">Kid Friendly? &mdash; (Does not apply for tv shows.)</label>
                             <select name="adults" className="form-control choose" id="formAdults" required>
                                 <option value="true">No</option>
                                 <option value="false">Yes</option>
@@ -45,7 +52,7 @@ export default class OccasionForm extends Component {
                             </select>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="formYear">Specific Year</label>
+                            <label htmlFor="formYear">Specific Year &mdash; (For TV shows, this is the first air date year.)</label>
                             <input name="year" type="text" className="form-control" id="formYear" placeholder="optional"/>
                         </div>
                         <button type="submit" className="btn btn-danger" id="formSubmit" onClick={ () => this.props.setFilm(this.state) }>Submit</button>

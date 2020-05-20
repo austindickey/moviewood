@@ -9,16 +9,16 @@ export default class Search extends Component {
 
     async occasionSearch() {
         const local = window.location.href.split('?').join(', ').split('=').join(', ').split('&').join(",").split(",").join(" ").split(" ")
-
-        let adults = local[4]
-        let genres = local[7]
-        let year = local[10]
+        let type = local[4]
+        let adults = local[7]
+        let genres = local[10]
+        let year = local[13]
 
         if (year === "") {
             year = "noYear"
         }
 
-        const url = `/search/${adults}/${genres}/${year}`
+        const url = `/search/${type}/${adults}/${genres}/${year}`
         const response = await fetch(url)
         const searchResults = await response.json()
         this.setState({searchResults})
@@ -70,7 +70,7 @@ export default class Search extends Component {
                                     return (
                                         <SingleResult
                                             key={i}
-                                            title={film.title}
+                                            title={film.title ? film.title : film.name}
                                             filmImg={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
                                             dbBtnText={"Add to Favorites"}
                                             btnClassNames={"btn btn-danger saveMovie"}

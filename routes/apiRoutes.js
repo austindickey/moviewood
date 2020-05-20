@@ -109,14 +109,19 @@ function showSearch(req, res) {
 
 function occasionSearch(req, res) {
     const tmdbApiKey = process.env.tmdbApiKey
+    let type = req.params.type
     let adults = req.params.adults
     let genres= req.params.genres
     let year = req.params.year
     
     let url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&language=en-US&sort_by=popularity.desc&include_adult=${adults}&include_video=false&page=1&with_genres=${genres}&year=${year}`
 
-    if (year === "noYear") {
+    if (type === "movie" && year === "noYear") {
         url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&language=en-US&sort_by=popularity.desc&include_adult=${adults}&include_video=false&page=1&with_genres=${genres}`
+    } else if (type === "tv" && year === "noYear") {
+        url = `https://api.themoviedb.org/3/discover/tv?api_key=${tmdbApiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=${genres}&include_null_first_air_dates=false`
+    } else if (type === "tv") {
+        url = `https://api.themoviedb.org/3/discover/tv?api_key=${tmdbApiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=${genres}&include_null_first_air_dates=false&first_air_date_year=${year}`
     }
 
     axios.get(url)
@@ -134,7 +139,7 @@ router.get("/api/movie/:search", movieSearch)
 
 router.get("/api/tv/:search", showSearch)
 
-router.get("/search/:adults/:genres/:year", occasionSearch)
+router.get("/search/:type/:adults/:genres/:year", occasionSearch)
 
 router.post("/add", controller.create)
 
