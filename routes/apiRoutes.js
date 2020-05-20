@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const axios = require('axios')
 require("dotenv").config()
-// const controller = require("../controllers/userController")
+const controller = require("../controllers/favorites")
 
 function movieSearch(req, res) {
     const tasteDiveApiKey = process.env.tasteDiveApiKey
@@ -109,5 +109,11 @@ function showSearch(req, res) {
 router.get("/api/movie/:search", movieSearch)
 
 router.get("/api/tv/:search", showSearch)
+
+router.post("/add", controller.create)
+
+router.post("/remove/:id", controller.remove)
+
+router.get("/favorites", controller.findAll)
 
 module.exports = router
