@@ -22,6 +22,26 @@ class Movie extends React.Component {
         })
     }
 
+    saveMovie(movie) {
+        const data = {
+            adult: movie.adult,
+            genre_ids: movie.genre_ids,
+            id: movie.id,
+            overview: movie.overview,
+            popularity: movie.popularity,
+            poster_path: movie.poster_path,
+            release_date: movie.release_date,
+            title: movie.title
+        }
+        fetch("/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+    }
+
     render() {
         let movies = this.state.movies
         
@@ -55,10 +75,10 @@ class Movie extends React.Component {
                                             key={i}
                                             title={movie.title}
                                             filmImg={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                            btnText={"Add to Favorites"}
+                                            dbBtnText={"Add to Favorites"}
                                             btnClassNames={"btn btn-danger saveMovie"}
                                             detailsClickFunc={ () => this.props.setFilm(movie) }
-                                            // clickFunc={() => this.saveMovie(movie)}
+                                            dbClickFunc={() => this.saveMovie(movie)}
                                         />
                                     )
                                 })}

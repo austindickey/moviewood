@@ -9,7 +9,7 @@ export function SingleResult({
     movie,
     filmImg,
     title,
-    btnText,
+    dbBtnText,
     btnClassNames,
     detailsClickFunc,
     dbClickFunc
@@ -19,7 +19,7 @@ export function SingleResult({
             <img src={filmImg} alt="Film Pic" />
             <h5>{title}</h5>
             <div className="buttonHolder">
-                <button className={btnClassNames} onClick={dbClickFunc}>{btnText}</button>
+                <button className={btnClassNames} onClick={dbClickFunc}>{dbBtnText}</button>
                 <Link onClick={detailsClickFunc} to="/singleFilm" className={"btn btn-danger viewDetails"}>
                     View Details
                 </Link>
