@@ -1,10 +1,10 @@
 import React from "react"
-import Occasion from "../Occasion"
+import OccasionForm from "../OccasionForm"
 
 function OccasionSearch() {
   return (
 
-    <Occasion/>
+    <OccasionForm/>
     
   )
 }

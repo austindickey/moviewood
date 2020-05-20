@@ -107,9 +107,34 @@ function showSearch(req, res) {
     
 }
 
+function occasionSearch(req, res) {
+    const tmdbApiKey = process.env.tmdbApiKey
+    let adults = req.params.adults
+    let genres= req.params.genres
+    let year = req.params.year
+    
+    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&language=en-US&sort_by=popularity.desc&include_adult=${adults}&include_video=false&page=1&with_genres=${genres}&year=${year}`
+
+    if (year === "noYear") {
+        url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&language=en-US&sort_by=popularity.desc&include_adult=${adults}&include_video=false&page=1&with_genres=${genres}`
+    }
+
+    axios.get(url)
+        .then(response => {
+            let results = response.data.results
+            res.send(results)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    
+}
+
 router.get("/api/movie/:search", movieSearch)
 
 router.get("/api/tv/:search", showSearch)
+
+router.get("/search/:adults/:genres/:year", occasionSearch)
 
 router.post("/add", controller.create)
 
