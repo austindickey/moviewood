@@ -56,6 +56,7 @@ function movieSearch(req, res) {
 }
 
 function showSearch(req, res) {
+    const tasteDiveApiKey = process.env.tasteDiveApiKey
     const tmdbApiKey = process.env.tmdbApiKey
     let searchQuery = req.params.search
     let namesOnly = []

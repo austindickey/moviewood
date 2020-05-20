@@ -22,6 +22,28 @@ class Show extends React.Component {
         })
     }
 
+    saveShow(show) {
+        const data = {
+            adult: show.adult,
+            genre_ids: show.genre_ids,
+            id: show.id,
+            overview: show.overview,
+            popularity: show.popularity,
+            poster_path: show.poster_path,
+            release_date: show.first_air_date,
+            title: show.name
+        }
+        fetch("/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then(function (){
+            alert("This tv show has been saved to your favorites.")
+        })
+    }
+
     render() {
         let shows = this.state.shows
         return (
@@ -53,10 +75,10 @@ class Show extends React.Component {
                                             key={i}
                                             title={show.name}
                                             filmImg={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
-                                            btnText={"Add to Favorites"}
+                                            dbBtnText={"Add to Favorites"}
                                             btnClassNames={"btn btn-danger saveMovie"}
                                             detailsClickFunc={ () => this.props.setFilm(show) }
-                                            // clickFunc={() => this.saveMovie(movie)}
+                                            dbClickFunc={() => this.saveShow(show)}
                                         />
                                     )
                                 })}
