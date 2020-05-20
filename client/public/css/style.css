@@ -152,6 +152,20 @@ body {
 }
 
 /* =================================
+        Occasion Search
+================================= */
+
+#occasionTitle {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#formBody {
+    width: 40%;
+    margin: 50px auto;
+}
+
+/* =================================
             Footer
 ================================= */
 
