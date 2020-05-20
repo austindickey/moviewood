@@ -39,6 +39,8 @@ class Movie extends React.Component {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
+        }).then(function (){
+            alert("This movie has been saved to your favorites.")
         })
     }
 
@@ -71,7 +73,6 @@ class Movie extends React.Component {
 
                                     return (
                                         <SingleResult
-                                            allData={movie}
                                             key={i}
                                             title={movie.title}
                                             filmImg={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

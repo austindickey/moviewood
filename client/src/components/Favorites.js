@@ -33,7 +33,7 @@ export default class Favorites extends Component {
         const favoritesList = this.state.favorites
         return (
             <Container>
-                <div>
+                <div className="contentHolder">
                 {!favoritesList.length ? (
                         <Results>
                             <h3 id="noResults">No Favorites Have Been Saved</h3>

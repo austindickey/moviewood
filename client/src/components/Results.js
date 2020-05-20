@@ -6,7 +6,6 @@ export function Results({ children }) {
 }
 
 export function SingleResult({
-    movie,
     filmImg,
     title,
     dbBtnText,
