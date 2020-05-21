@@ -46,7 +46,8 @@ body {
 
 #loginSubmit,
 #createSubmit {
-    margin-top: 15px;
+    margin: 15px auto;
+
 }
 
 /* =================================

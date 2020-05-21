@@ -1,18 +1,33 @@
 import React, { Component } from 'react'
 import Container from './Container'
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 
 export default class LoginBox extends Component {
     state = {
         username: "",
-        password: ""
+        password: "",
+        redirect: null
     }
 
     async loginSubmit() {
-        const url = `/login`
+        const name = this.state.username
+        const pass = this.state.password
+        const url = `/login/${name}`
         const response = await fetch(url)
         const data = await response.json()
-        console.log(data)
+
+        if (data.username === name && data.password === pass) {
+            this.setState({ redirect: "/home" })
+        } else if (data.username === name && data.password !== pass) {
+            this.setState({password: ""})
+            alert("The password you entered was incorrect.")
+        } else if (data.username === "wrong") {
+            this.setState({
+                username: "",
+                password: ""
+            })
+            alert("The username you entered was incorrect.") // This isn't hitting for some reason
+        }
     }
 
     handleInputChange = event => {
@@ -23,6 +38,9 @@ export default class LoginBox extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
         return (
             <Container>
                 <div className="contentHolder">
@@ -41,7 +59,7 @@ export default class LoginBox extends Component {
                         <hr/>
 
                         <h4 id="newUsers">New Users</h4>
-                        <Link to="/new-account" className={"btn btn-danger mb-2"}>Create Account</Link>
+                        <Link to="/new-account" className={"btn btn-danger"}>Create Account</Link>
                     </div>
                 </div>
             </Container>

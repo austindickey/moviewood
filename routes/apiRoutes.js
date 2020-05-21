@@ -1,7 +1,8 @@
 const router = require("express").Router()
 const axios = require('axios')
 require("dotenv").config()
-const controller = require("../controllers/favorites")
+const favorites = require("../controllers/favorites")
+const users = require("../controllers/users")
 
 function movieSearch(req, res) {
     const tasteDiveApiKey = process.env.tasteDiveApiKey
@@ -14,9 +15,6 @@ function movieSearch(req, res) {
     axios.get(url)
         .then(response => {
             let recommendations = response.data.Similar.Results
-
-            console.log("Recommendations: ", recommendations)
-
             let movieData = []
             const promiseArr = []
 
@@ -66,9 +64,6 @@ function showSearch(req, res) {
     axios.get(url)
         .then(response => {
             let recommendations = response.data.Similar.Results
-
-            console.log("Recommendations: ", recommendations)
-
             let showData = []
             const promiseArr = []
 
@@ -141,10 +136,16 @@ router.get("/api/tv/:search", showSearch)
 
 router.get("/search/:type/:adults/:genres/:year", occasionSearch)
 
-router.post("/add", controller.create)
+router.post("/add", favorites.create)
 
-router.post("/remove/:id", controller.remove)
+router.post("/remove/:id", favorites.remove)
 
-router.get("/favorites", controller.findAll)
+router.get("/favorites", favorites.findAll)
+
+router.post("/create", users.create)
+
+router.get("/login/:username", users.login)
+
+router.get("/check/:email/:username", users.checkIfExists)
 
 module.exports = router
