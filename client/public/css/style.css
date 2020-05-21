@@ -11,6 +11,45 @@ body {
 }
 
 /* =================================
+            Login
+================================= */
+
+.loginBox,
+.createAccount {
+    width: 350px;
+    margin: 50px auto;
+    text-align: center;
+    /* background-image: url(../img/banner.png); */
+    padding: 35px 50px;
+    text-align: center;
+    border: 5px solid #525252;
+    border-radius: 8px;
+}
+
+#existingUsers,
+#createHeader {
+    margin-bottom: 25px;
+}
+
+#newUsers {
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+#loginUsername,
+#loginPassword,
+#newPassword,
+#verifyPassword,
+#createEmail {
+    width: 250px;
+}
+
+#loginSubmit,
+#createSubmit {
+    margin-top: 15px;
+}
+
+/* =================================
             NavBar
 ================================= */
 
@@ -48,7 +87,7 @@ body {
 }
 
 /* =================================
-        Search Bar
+            Search Bar
 ================================= */
 
 #searchBox {
@@ -85,6 +124,7 @@ body {
     text-align: center;
     border: 5px solid #525252;
     border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 #yourRecs {

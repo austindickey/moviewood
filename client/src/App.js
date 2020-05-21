@@ -2,6 +2,8 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import { useState } from "react"
 import Navbar from "./components/Navbar"
+import Login from "./components/pages/Login"
+import NewAccount from './components/pages/NewAccount'
 import Home from "./components/pages/Home"
 import MovieSearch from "./components/pages/MovieSearch"
 import ShowSearch from "./components/pages/ShowSearch"
@@ -17,7 +19,9 @@ function App() {
     <Router>
       <div>
         <Navbar />
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Login} />
+        <Route exact path="/new-account" component={NewAccount} />
+        <Route exact path="/home" component={Home} />
         <Route exact path="/movies" component={() => <MovieSearch setFilm={setFilm}/>} />
         <Route exact path="/tv" component={() => <ShowSearch setFilm={setFilm}/>} />
         <Route exact path="/occasion" component={OccasionSearch} />

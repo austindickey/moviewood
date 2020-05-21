@@ -10,11 +10,11 @@ function Navbar() {
 
   return (
     <nav className="navbar navbar-expand-lg">
-      <a className="logo" href="/">
+      <a className="logo" href="/home">
         <img src={window.location.origin + "/img/logo.png"} alt="Logo"/>
       </a>
       <div className="navbar-nav">
-        <Link onClick={() => getRoute("/")} to="/" className={route === "/" ? "nav-link active" : "nav-link"}>
+        <Link onClick={() => getRoute("/home")} to="/home" className={route === "/home" ? "nav-link active" : "nav-link"}>
           Home
         </Link>
         <Link onClick={() => getRoute("/movies")} to="/movies" className={route === "/movies" ? "nav-link active" : "nav-link"}>
