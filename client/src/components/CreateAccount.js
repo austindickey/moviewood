@@ -8,13 +8,85 @@ export default class LoginBox extends Component {
         newPassword: "",
         verifyPassword: ""
     }
+    
+    // Validation Function for the email
+    validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return re.test(String(email).toLowerCase())
+    }
 
     async newUserSubmit() {
-
-
-        // Checking for existing email and username
+        // Assigning state values to constants
         const email = this.state.email
         const name = this.state.username
+        const newPassword = this.state.newPassword
+        const verifyPassword = this.state.verifyPassword
+
+        // Email Validator
+        if (!this.validateEmail(email)) {
+            this.setState({
+                email: "",
+                username: "",
+                newPassword: "",
+                verifyPassword: ""
+            })
+            return alert("Please provide a valid email address.")
+        }
+        
+        // Username Validator
+        if (name.length < 4) {
+            this.setState({
+                username: "",
+                newPassword: "",
+                verifyPassword: ""
+            })
+            return alert("Username must be at least 4 characters long.")
+        } else if (name.length > 20) {
+            this.setState({
+                username: "",
+                newPassword: "",
+                verifyPassword: ""
+            })
+            return alert("Username must be less than 20 characters long.")
+        } else if (!name.match("^[A-Za-z0-9]+$")) {
+            this.setState({
+                username: "",
+                newPassword: "",
+                verifyPassword: ""
+            })
+            return alert("Username must contain only letters and numbers.")
+        }
+
+        // New Password Validator
+        if (newPassword.length < 4) {
+            this.setState({
+                newPassword: "",
+                verifyPassword: ""
+            })
+            return alert("Password must be at least 4 characters long.")
+        } else if (newPassword.length > 20) {
+            this.setState({
+                newPassword: "",
+                verifyPassword: ""
+            })
+            return alert("Password must be less than 20 characters long.")
+        } else if (!newPassword.match(/^(?=.*[A-Za-z])(?=.*\d)/)){
+            this.setState({
+                newPassword: "",
+                verifyPassword: ""
+            })
+            return alert("Password must contain at least 1 letter and 1 number.")
+        }
+
+        // Verify Password Validator
+        if (verifyPassword !== newPassword) {
+            this.setState({
+                verifyPassword: ""
+            })
+            return alert("Passwords do not match.")
+        }
+
+        // Checking for existing email and username
         const url = `/check/${email}/${name}`
         const response = await fetch(url)
         const data = await response.json()
