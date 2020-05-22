@@ -8,17 +8,20 @@ export default class Search extends Component {
     }
 
     async occasionSearch() {
-        const local = window.location.href.split('?').join(', ').split('=').join(', ').split('&').join(",").split(",").join(" ").split(" ")
-        let type = local[4]
-        let adults = local[7]
-        let genres = local[10]
-        let year = local[13]
+        const local = window.location.href.split('?').join(',').split('=').join(',').split('&').join(',').split(',')
+
+        console.log("Local: ", local)
+        let type = local[2]
+        let adults = local[4]
+        let genres = local[6]
+        let year = local[8]
 
         if (year === "") {
             year = "noYear"
         }
 
         const url = `/search/${type}/${adults}/${genres}/${year}`
+        console.log("URL: ", url)
         const response = await fetch(url)
         const searchResults = await response.json()
         this.setState({searchResults})
