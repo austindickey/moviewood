@@ -156,7 +156,7 @@ body {
 
 .singleResult h5 {
     max-width: 200px;
-    margin: 15px auto;
+    margin: 15px auto 8px auto;
 }
 
 .singleResult img {
@@ -166,6 +166,10 @@ body {
     max-height: 300px;
     margin: 0 auto;
     border: 5px solid #F66363;
+}
+
+.filmYear {
+    font-style: italic;
 }
 
 /* =================================
@@ -179,7 +183,7 @@ body {
     flex-wrap: wrap;
 }
 
-#filmDetails img {
+#filmDetailsPic {
     min-width: 350px;
     min-height: 525px;
     max-width: 350px;
@@ -189,7 +193,39 @@ body {
 
 #data {
     padding-left: 25px;
-    width: 50%;
+    width: 60%;
+}
+
+#filmActors {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.singleActor {
+    margin: 10px;
+}
+
+#filmActors h5 {
+    max-width: 175px;
+    margin: 15px auto 8px auto;
+}
+
+.singleActorPic {
+    min-width: 175px;
+    min-height: 264px;
+    max-width: 175px;
+    max-height: 264px;
+    margin: 0 auto;
+    border: 5px solid #F66363;
+}
+
+.characterName {
+    font-style: italic;
+    max-width: 175px;
+    margin: 15px auto 0px auto;
 }
 
 /* =================================

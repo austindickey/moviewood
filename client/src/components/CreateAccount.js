@@ -87,7 +87,7 @@ export default class LoginBox extends Component {
             })
             return alert("Passwords do not match.")
         }
-        let created = false
+        
         // Checking for existing email and username
         const url = `/check/${email}/${name}`
         const response = await fetch(url)
@@ -125,7 +125,7 @@ export default class LoginBox extends Component {
             }).then(function (){
                 alert("Your account has been created.")
             })
-            
+
             this.setState({ redirect: "/home" })
         }
     }

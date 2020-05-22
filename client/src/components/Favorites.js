@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Container from './Container'
 import { Results, SingleResult } from "./Results"
+import Moment from "moment"
 
 export default class Favorites extends Component {
 
@@ -44,11 +45,13 @@ export default class Favorites extends Component {
                                 <h3 id="yourRecs">Your Favorites</h3>
 
                                 {favoritesList.map((fav, i) => {
+                                    let formattedDate = Moment(fav.release_date ? fav.release_date : fav.first_air_date).format("YYYY")
 
                                     return (
                                         <SingleResult
                                             key={i}
                                             title={fav.title}
+                                            year={formattedDate}
                                             filmImg={`https://image.tmdb.org/t/p/w500${fav.poster_path}`}
                                             dbBtnText={"Remove Favorite"}
                                             btnClassNames={"btn btn-danger removeFav"}

@@ -8,6 +8,7 @@ export function Results({ children }) {
 export function SingleResult({
     filmImg,
     title,
+    year,
     dbBtnText,
     btnClassNames,
     detailsClickFunc,
@@ -17,6 +18,7 @@ export function SingleResult({
         <div className="singleResult">
             <img src={filmImg} alt="Film Pic" />
             <h5>{title}</h5>
+            <p className="filmYear">({year})</p>
             <div className="buttonHolder">
                 <button className={btnClassNames} onClick={dbClickFunc}>{dbBtnText}</button>
                 <Link onClick={detailsClickFunc} to="/singleFilm" className={"btn btn-danger viewDetails"}>

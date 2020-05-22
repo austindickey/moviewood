@@ -1,6 +1,7 @@
 import React from "react"
 import Container from "./Container"
 import { Results, SingleResult } from "./Results"
+import Moment from "moment"
 
 class Movie extends React.Component {
     state = {
@@ -70,11 +71,13 @@ class Movie extends React.Component {
                                 <h3 id="yourRecs">Your Recommendations</h3>
 
                                 {movies.map((movie, i) => {
-
+                                    let formattedDate = Moment(movie.release_date).format("YYYY")
+                                    console.log(movie.genre_ids)
                                     return (
                                         <SingleResult
                                             key={i}
                                             title={movie.title}
+                                            year={formattedDate}
                                             filmImg={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                             dbBtnText={"Add to Favorites"}
                                             btnClassNames={"btn btn-danger saveMovie"}

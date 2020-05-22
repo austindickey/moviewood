@@ -102,6 +102,23 @@ function showSearch(req, res) {
     
 }
 
+function getActors(req, res) {
+    const tmdbApiKey = process.env.tmdbApiKey
+    let filmId = req.params.filmId
+    
+    const url = `https://api.themoviedb.org/3/movie/${filmId}/credits?api_key=${tmdbApiKey}`
+
+    axios.get(url)
+        .then(response => {
+            let actors = response.data
+            res.send(actors)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    
+}
+
 function occasionSearch(req, res) {
     const tmdbApiKey = process.env.tmdbApiKey
     let type = req.params.type
@@ -133,6 +150,8 @@ function occasionSearch(req, res) {
 router.get("/api/movie/:search", movieSearch)
 
 router.get("/api/tv/:search", showSearch)
+
+router.get("/api/actors/:filmId", getActors)
 
 router.get("/search/:type/:adults/:genres/:year", occasionSearch)
 

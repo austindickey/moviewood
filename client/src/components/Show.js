@@ -1,6 +1,7 @@
 import React from "react"
 import Container from "./Container"
 import { Results, SingleResult } from "./Results"
+import Moment from "moment"
 
 class Show extends React.Component {
     state = {
@@ -69,11 +70,13 @@ class Show extends React.Component {
                                 <h3 id="yourRecs">Your Recommendations</h3>
 
                                 {shows.map((show, i) => {
+                                    let formattedDate = Moment(show.first_air_date).format("YYYY")
 
                                     return (
                                         <SingleResult
                                             key={i}
                                             title={show.name}
+                                            year={formattedDate}
                                             filmImg={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
                                             dbBtnText={"Add to Favorites"}
                                             btnClassNames={"btn btn-danger saveMovie"}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Container from './Container'
 import { Results, SingleResult } from "./Results"
+import Moment from "moment"
 
 export default class Search extends Component {
     state = {
@@ -69,11 +70,13 @@ export default class Search extends Component {
                                 <h3 id="yourRecs">Your Search Results</h3>
 
                                 {search.map((film, i) => {
+                                    let formattedDate = Moment(film.release_date ? film.release_date : film.first_air_date).format("YYYY")
 
                                     return (
                                         <SingleResult
                                             key={i}
                                             title={film.title ? film.title : film.name}
+                                            year={formattedDate}
                                             filmImg={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
                                             dbBtnText={"Add to Favorites"}
                                             btnClassNames={"btn btn-danger saveMovie"}
