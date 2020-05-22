@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import Container from './Container'
+import { Redirect } from "react-router-dom"
 
 export default class LoginBox extends Component {
     state = {
         email: "",
         username: "",
         newPassword: "",
-        verifyPassword: ""
+        verifyPassword: "",
+        redirect: null
     }
     
     // Validation Function for the email
@@ -85,7 +87,7 @@ export default class LoginBox extends Component {
             })
             return alert("Passwords do not match.")
         }
-
+        let created = false
         // Checking for existing email and username
         const url = `/check/${email}/${name}`
         const response = await fetch(url)
@@ -123,6 +125,8 @@ export default class LoginBox extends Component {
             }).then(function (){
                 alert("Your account has been created.")
             })
+            
+            this.setState({ redirect: "/home" })
         }
     }
 
@@ -134,6 +138,10 @@ export default class LoginBox extends Component {
     }
 
     render() {
+        console.log("Redirect: ", this.state.redirect)
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
         return (
             <Container>
                 <div className="contentHolder">
