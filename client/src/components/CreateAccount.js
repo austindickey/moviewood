@@ -126,6 +126,10 @@ export default class LoginBox extends Component {
                 alert("Your account has been created.")
             })
 
+            this.props.setState({
+                username: this.state.username,
+                isLoggedIn: true
+            })
             this.setState({ redirect: "/home" })
         }
     }

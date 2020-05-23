@@ -13,21 +13,30 @@ import OccasionResults from "./components/pages/OccasionResults"
 import SingleFilm from "./components/SingleFilm"
 
 function App() {
-  const [film, setFilm] = useState({})
+  const [state,setState] = useState({
+    username: "",
+    isLoggedIn: null,
+    film: {},
+    formData: {}
+  })
+
+  const updateState = (newState) => {
+    setState({...state, ...newState})
+  }
 
   return (
     <Router>
       <div>
         <Navbar />
-        <Route exact path="/" component={Login} />
-        <Route exact path="/new-account" component={NewAccount} />
+        <Route exact path="/" component={() => <Login username={state.username} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
+        <Route exact path="/new-account" component={() => <NewAccount username={state.username} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
         <Route exact path="/home" component={Home} />
-        <Route exact path="/movies" component={() => <MovieSearch setFilm={setFilm}/>} />
-        <Route exact path="/tv" component={() => <ShowSearch setFilm={setFilm}/>} />
-        <Route exact path="/occasion" component={OccasionSearch} />
-        <Route exact path="/search" component={() => <OccasionResults setFilm={setFilm}/>} />
-        <Route exact path="/favorites" component={() => <ShowFavorites setFilm={setFilm}/>} />
-        <Route exact path="/singleFilm" component={() => <SingleFilm film={film}/>} />
+        <Route exact path="/movies" component={() => <MovieSearch username={state.username} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
+        <Route exact path="/tv" component={() => <ShowSearch username={state.username} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
+        <Route exact path="/occasion" component={() => <OccasionSearch isLoggedIn={state.isLoggedIn} />} />
+        <Route exact path="/search" component={() => <OccasionResults username={state.username} film={state.film} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
+        <Route exact path="/favorites" component={() => <ShowFavorites username={state.username} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
+        <Route exact path="/singleFilm" component={() => <SingleFilm username={state.username} isLoggedIn={state.isLoggedIn} film={state.film}/>} />
       </div>
     </Router>
   )

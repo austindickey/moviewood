@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import Container from './Container'
 import { Results, SingleResult } from "./Results"
 import Moment from "moment"
+import { Redirect } from "react-router-dom"
 
 export default class Search extends Component {
     state = {
-        searchResults: []
+        searchResults: [],
+        redirect: null
     }
 
     async occasionSearch() {
+        console.log(this.props)
         const local = window.location.href.split('?').join(',').split('=').join(',').split('&').join(',').split(',')
 
         console.log("Local: ", local)
@@ -29,6 +32,12 @@ export default class Search extends Component {
     }
 
     componentDidMount() {
+        const logCheck = this.props.isLoggedIn
+
+        if (!logCheck) {
+            this.setState({ redirect: "/" })
+        }
+
         this.occasionSearch()
     }
 
@@ -55,7 +64,12 @@ export default class Search extends Component {
     }
 
     render() {
-        let search = this.state.searchResults
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
+
+        const search = this.state.searchResults
+
         return (
             <Container>
                 <div className="contentHolder">
@@ -80,7 +94,7 @@ export default class Search extends Component {
                                             filmImg={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
                                             dbBtnText={"Add to Favorites"}
                                             btnClassNames={"btn btn-danger saveMovie"}
-                                            detailsClickFunc={() => this.props.setFilm(film)}
+                                            detailsClickFunc={() => this.props.setState(film)}
                                             dbClickFunc={() => this.saveMovie(film)}
                                         />
                                     )

@@ -2,11 +2,13 @@ import React from "react"
 import Container from "./Container"
 import { Results, SingleResult } from "./Results"
 import Moment from "moment"
+import { Redirect } from "react-router-dom"
 
 class Movie extends React.Component {
     state = {
         movies: [],
-        searchQuery: ""
+        searchQuery: "",
+        redirect: null
     }
 
     async movieSearch() {
@@ -34,7 +36,10 @@ class Movie extends React.Component {
             release_date: movie.release_date,
             title: movie.title
         }
-        fetch("/add", {
+
+        const username = this.props.username
+
+        fetch(`/add/${username}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -45,8 +50,20 @@ class Movie extends React.Component {
         })
     }
 
+    componentDidMount() {
+        const logCheck = this.props.isLoggedIn
+
+        if (!logCheck) {
+            this.setState({ redirect: "/" })
+        }
+    }
+
     render() {
-        let movies = this.state.movies
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
+
+        const movies = this.state.movies
         
         return (
             <Container>
@@ -72,7 +89,6 @@ class Movie extends React.Component {
 
                                 {movies.map((movie, i) => {
                                     let formattedDate = Moment(movie.release_date).format("YYYY")
-                                    console.log(movie.genre_ids)
                                     return (
                                         <SingleResult
                                             key={i}
@@ -81,7 +97,7 @@ class Movie extends React.Component {
                                             filmImg={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                             dbBtnText={"Add to Favorites"}
                                             btnClassNames={"btn btn-danger saveMovie"}
-                                            detailsClickFunc={ () => this.props.setFilm(movie) }
+                                            detailsClickFunc={ () => this.props.setState({film: movie}) }
                                             dbClickFunc={() => this.saveMovie(movie)}
                                         />
                                     )

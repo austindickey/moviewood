@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import Container from "./Container"
 import Moment from "moment"
+import { Redirect } from "react-router-dom"
 
 export default class SingleFilm extends Component {
     state = {
-        actors: []
+        actors: [],
+        redirect: null
     }
 
     async grabActors() {
@@ -17,13 +19,22 @@ export default class SingleFilm extends Component {
     }
 
     componentDidMount() {
+        const logCheck = this.props.isLoggedIn
+
+        if (!logCheck) {
+            this.setState({ redirect: "/" })
+        }
+
         this.grabActors()
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
+
         let actors = this.state.actors
         const data = this.props
-        console.log(data)
 
         let formattedDate = Moment(data.film.release_date === undefined ? data.film.first_air_date : data.film.release_date).format("MMMM Do, YYYY")
 
@@ -130,10 +141,9 @@ export default class SingleFilm extends Component {
                                 <h5 className="text-center">Actors</h5>
                                 <div id="filmActors">
                                     {actors.map((actor, i) => {
-                                        console.log(actor)
                                         return (
                                             <div className="singleActor">
-                                                <img className="singleActorPic" src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt="Film Pic" />
+                                                <img className="singleActorPic" src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt="Actor Pic" />
                                                 <h5>{actor.name}</h5>
                                                 <p className="characterName">Character: {actor.character}</p>
                                             </div>

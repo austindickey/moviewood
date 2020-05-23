@@ -2,11 +2,13 @@ import React from "react"
 import Container from "./Container"
 import { Results, SingleResult } from "./Results"
 import Moment from "moment"
+import { Redirect } from "react-router-dom"
 
 class Show extends React.Component {
     state = {
         shows: [],
-        searchQuery: ""
+        searchQuery: "",
+        redirect: null
     }
 
     async showSearch() {
@@ -45,8 +47,21 @@ class Show extends React.Component {
         })
     }
 
+    componentDidMount() {
+        const logCheck = this.props.isLoggedIn
+
+        if (!logCheck) {
+            this.setState({ redirect: "/" })
+        }
+    }
+
     render() {
-        let shows = this.state.shows
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
+
+        const shows = this.state.shows
+
         return (
             <Container>
                 <div className="contentHolder">
@@ -80,7 +95,7 @@ class Show extends React.Component {
                                             filmImg={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
                                             dbBtnText={"Add to Favorites"}
                                             btnClassNames={"btn btn-danger saveMovie"}
-                                            detailsClickFunc={ () => this.props.setFilm(show) }
+                                            detailsClickFunc={ () => this.props.setState({film: show}) }
                                             dbClickFunc={() => this.saveShow(show)}
                                         />
                                     )

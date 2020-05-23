@@ -1,10 +1,10 @@
 import React from "react"
 import CreateAccount from "../CreateAccount"
 
-function NewAccount() {
+function NewAccount(props) {
   return (
       
-    <CreateAccount/>
+    <CreateAccount {...props}/>
     
   )
 }

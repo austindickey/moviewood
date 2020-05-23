@@ -2,28 +2,40 @@ import React, { Component } from 'react'
 import Container from './Container'
 import { Results, SingleResult } from "./Results"
 import Moment from "moment"
+import { Redirect } from "react-router-dom"
 
 export default class Favorites extends Component {
 
     state = {
-        favorites: []
+        favorites: [],
+        username: "",
+        redirect: null
     }
 
     showFavorites() {
+        const name = this.props.username
 
-        fetch('/favorites')
+        fetch(`/favorites/${name}`)
             .then(response => response.json())
-            .then(res => this.setState({favorites: res}))
+            .then(res => this.setState({favorites: res.favorites}))
             .catch(err => console.log("Error: ", err))
         
     }
 
     componentDidMount() {
+        const logCheck = this.props.isLoggedIn
+
+        if (!logCheck) {
+            this.setState({ redirect: "/" })
+        }
+
         this.showFavorites()
     }
 
     removeFav(fav) {
-        fetch(`/remove/${fav._id}`, {
+        const name = this.props.username
+
+        fetch(`/remove/${name}/${fav.id}`, {
             method: "POST"
         }).then(()=> {
             this.showFavorites()
@@ -31,7 +43,12 @@ export default class Favorites extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
+
         const favoritesList = this.state.favorites
+
         return (
             <Container>
                 <div className="contentHolder">

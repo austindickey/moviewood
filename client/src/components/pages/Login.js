@@ -1,10 +1,10 @@
 import React from "react"
 import LoginBox from "../LoginBox"
 
-function Login() {
+function Login(props) {
   return (
       
-    <LoginBox/>
+    <LoginBox {...props}/>
     
   )
 }

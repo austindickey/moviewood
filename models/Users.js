@@ -14,6 +14,10 @@ const usersSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  favorites: {
+    type: Array,
+    ref: "Film"
   }
 })
 

@@ -1,9 +1,25 @@
 import React, { Component } from 'react'
 import Container from './Container'
+import { Redirect } from "react-router-dom"
 
 export default class OccasionForm extends Component {
+    state = {
+        redirect: null
+    }
+
+    componentDidMount() {
+        const logCheck = this.props.isLoggedIn
+
+        if (!logCheck) {
+            this.setState({ redirect: "/" })
+        }
+    }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
+        
         return (
             <Container>
                 <div className="contentHolder">
@@ -55,7 +71,7 @@ export default class OccasionForm extends Component {
                             <label htmlFor="formYear">Specific Year &mdash; (For TV shows, this is the first air date year.)</label>
                             <input name="year" type="text" className="form-control" id="formYear" placeholder="optional"/>
                         </div>
-                        <button type="submit" className="btn btn-danger" id="formSubmit" onClick={ () => this.props.setFilm(this.state) }>Submit</button>
+                        <button type="submit" className="btn btn-danger" id="formSubmit" onClick={ () => this.props.setState(this.state) }>Submit</button>
                     </form>
                 </div>
             </Container>

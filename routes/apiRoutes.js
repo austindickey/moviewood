@@ -155,11 +155,15 @@ router.get("/api/actors/:filmId", getActors)
 
 router.get("/search/:type/:adults/:genres/:year", occasionSearch)
 
-router.post("/add", favorites.create)
+// router.post("/add", favorites.create)
 
-router.post("/remove/:id", favorites.remove)
+router.post("/add/:username", users.addFavorites)
 
-router.get("/favorites", favorites.findAll)
+router.post("/remove/:username/:id", users.removeSingleFavorite)
+
+// router.get("/favorites", favorites.findAll)
+
+router.get("/favorites/:username", users.findFavorites)
 
 router.post("/create", users.create)
 

@@ -1,10 +1,10 @@
 import React from "react"
 import OccasionForm from "../OccasionForm"
 
-function OccasionSearch() {
+function OccasionSearch(props) {
   return (
 
-    <OccasionForm/>
+    <OccasionForm {...props}/>
     
   )
 }
