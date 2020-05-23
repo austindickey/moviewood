@@ -177,31 +177,34 @@ body {
 ================================= */
 
 #filmDetails {
-    width: 100%;
-    margin: 50px auto;
+    /* width: 100%; */
+    margin: 50px 0;
     display: flex;
     flex-wrap: wrap;
 }
 
 #filmDetailsPic {
-    min-width: 350px;
-    min-height: 525px;
-    max-width: 350px;
-    max-height: 525px;
+    max-width: 100%;
     border: 5px solid #F66363;
 }
 
 #data {
-    padding-left: 25px;
-    width: 60%;
+    padding: 0 25px;
+    width: 100%;
+}
+
+.singleFilmDate,
+#data span {
+    font-style: italic;
+    color: #F66363;
 }
 
 #filmActors {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     text-align: center;
     width: 100%;
-    margin: 0 auto;
 }
 
 .singleActor {

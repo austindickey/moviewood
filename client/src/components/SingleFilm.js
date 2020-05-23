@@ -113,29 +113,36 @@ export default class SingleFilm extends Component {
             <Container>
                 <div className="contentHolder">
                     <div id="filmDetails">
-                        <img id="filmDetailsPic" src={`https://image.tmdb.org/t/p/w500${data.film.poster_path}`} alt="Film Pic" />
-                        <div id="data">
-                            <h3>{data.film.title === undefined ? data.film.name : data.film.title}</h3>
-                            <p>Release Date: {formattedDate}</p>
-                            <p>Genres: {genres.join(", ")}</p>
-                            <p>Overview: {data.film.overview}</p>
 
-                            <hr/>
+                        <div className="col-md-4">
+                            <img id="filmDetailsPic" src={`https://image.tmdb.org/t/p/w500${data.film.poster_path}`} alt="Film Pic" />
+                        </div>
 
-                            <h5 className="text-center">Actors</h5>
-                            <div id="filmActors">
-                                {actors.map((actor, i) => {
-                                    console.log(actor)
-                                    return (
-                                        <div className="singleActor">
-                                            <img className="singleActorPic" src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt="Film Pic" />
-                                            <h5>{actor.name}</h5>
-                                            <p className="characterName">Character: {actor.character}</p>
-                                        </div>
-                                    )
-                                })}
+                        <div className="col-md-8">
+                            <div id="data">
+                                <h3>{data.film.title === undefined ? data.film.name : data.film.title}</h3>
+                                <p className="singleFilmDate">Release Date: {formattedDate}</p>
+                                <p><span>Genres:</span> {genres.join(", ")}</p>
+                                <p><span>Summary:</span> {data.film.overview}</p>
+
+                                <hr/>
+
+                                <h5 className="text-center">Actors</h5>
+                                <div id="filmActors">
+                                    {actors.map((actor, i) => {
+                                        console.log(actor)
+                                        return (
+                                            <div className="singleActor">
+                                                <img className="singleActorPic" src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt="Film Pic" />
+                                                <h5>{actor.name}</h5>
+                                                <p className="characterName">Character: {actor.character}</p>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </Container>
