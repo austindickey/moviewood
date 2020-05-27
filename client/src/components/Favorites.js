@@ -24,6 +24,7 @@ export default class Favorites extends Component {
 
     componentDidMount() {
         const logCheck = this.props.isLoggedIn
+        console.log(logCheck)
 
         if (!logCheck) {
             this.setState({ redirect: "/" })
@@ -72,7 +73,7 @@ export default class Favorites extends Component {
                                             filmImg={`https://image.tmdb.org/t/p/w500${fav.poster_path}`}
                                             dbBtnText={"Remove Favorite"}
                                             btnClassNames={"btn btn-danger removeFav"}
-                                            detailsClickFunc={ () => this.props.setFilm(fav) }
+                                            detailsClickFunc={ () => this.props.setState({film: fav}) }
                                             dbClickFunc={() => this.removeFav(fav)}
                                         />
                                     )

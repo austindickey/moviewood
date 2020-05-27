@@ -24,7 +24,7 @@ function Navbar() {
           Search by TV Show
         </Link>
         <Link onClick={() => getRoute("/occasion")} to="/occasion" className={route === "/occasion" ? "nav-link active" : "nav-link"}>
-          Search by Occasion
+          Search by Features
         </Link>
         <Link onClick={() => getRoute("/favorites")} to="/favorites" className={route === "/favorites" ? "nav-link active" : "nav-link"}>
           Your Favorites

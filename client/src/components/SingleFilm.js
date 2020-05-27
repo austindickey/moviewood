@@ -28,6 +28,31 @@ export default class SingleFilm extends Component {
         this.grabActors()
     }
 
+    saveFav(film) {
+        const data = {
+            adult: film.adult,
+            genre_ids: film.genre_ids,
+            id: film.id,
+            overview: film.overview,
+            popularity: film.popularity,
+            poster_path: film.poster_path,
+            release_date: film.release_date,
+            title: film.title
+        }
+
+        const username = this.props.username
+
+        fetch(`/add/${username}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then(function (){
+            alert("This movie has been saved to your favorites.")
+        })
+    }
+
     render() {
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />
@@ -135,6 +160,7 @@ export default class SingleFilm extends Component {
                                 <p className="singleFilmDate">Release Date: {formattedDate}</p>
                                 <p><span>Genres:</span> {genres.join(", ")}</p>
                                 <p><span>Summary:</span> {data.film.overview}</p>
+                                <button className={"btn btn-danger saveMovie"} onClick={() => this.saveFav(data.film)}>Add to Favorites</button>
 
                                 <hr/>
 

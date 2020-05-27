@@ -37,7 +37,6 @@ module.exports = {
     db.Users
       .findOne({username: req.params.username})
       .populate("film")
-      .sort({ addedDate: -1 })
       .then(dbModel => res.send(dbModel))
       .catch(err => res.status(422).json(err))
   },
@@ -49,9 +48,9 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
   removeSingleFavorite: function(req, res) {
-    console.log(req.params.id)
     db.Users
-      .findOneAndUpdate({username: req.params.username}, { $pull: { "favorites" : {id: req.params.id} } })
+      .findOneAndUpdate({ username: req.params.username }, { $pull: { favorites: { id: req.params.id } } }, {new: true})
+      // .updateOne({ username: req.params.username }, { $pull: { favorites: { $elemMatch: { id: req.params.id } } } })
       .then(dbModel => res.send(dbModel))
       .catch(err => res.status(422).json(err))
   }
