@@ -57,7 +57,7 @@ export default class Favorites extends Component {
                 <div className="contentHolder">
                     {!movieFavs.length ? (
                         <Results>
-                            <h3 id="noResults">No Favorites Movies Have Been Saved</h3>
+                            <h3 className="noResults">No Favorites Movies Have Been Saved</h3>
                         </Results>
                     ) : (   
                         <Results>
@@ -85,7 +85,7 @@ export default class Favorites extends Component {
 
                     {!tvFavs.length ? (
                         <Results>
-                            <h3 id="noResults">No Favorites TV Shows Have Been Saved</h3>
+                            <h3 className="noResults">No Favorites TV Shows Have Been Saved</h3>
                         </Results>
                     ) : (   
                         <Results>

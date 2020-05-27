@@ -96,7 +96,7 @@ class Movie extends React.Component {
 
                     {!movies.length ? (
                         <Results>
-                            <h3 id="noResults">No Recommendations to Display</h3>
+                            <h3 className="noResults">No Recommendations to Display</h3>
                         </Results>
                     ) : (   
                             
