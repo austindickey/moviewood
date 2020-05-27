@@ -2,11 +2,12 @@ import React from "react"
 import Container from "./Container"
 import { Results, SingleResult } from "./Results"
 import Moment from "moment"
-import { Redirect } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 
 class Movie extends React.Component {
     state = {
         movies: [],
+        masterMovie: {},
         searchQuery: "",
         redirect: null
     }
@@ -15,6 +16,8 @@ class Movie extends React.Component {
         const url = `/api/movie/${this.state.searchQuery}`
         const response = await fetch(url)
         const movies = await response.json()
+        this.setState({masterMovie: movies[movies.length -1]})
+        movies.pop()
         this.setState({movies})
     }
 
@@ -34,7 +37,8 @@ class Movie extends React.Component {
             popularity: movie.popularity,
             poster_path: movie.poster_path,
             release_date: movie.release_date,
-            title: movie.title
+            title: movie.title,
+            type: movie.type
         }
 
         const username = this.props.username
@@ -63,7 +67,12 @@ class Movie extends React.Component {
             return <Redirect to={this.state.redirect} />
         }
 
+        const master = this.state.masterMovie
         const movies = this.state.movies
+
+        let masterFormattedDate = Moment(master.release_date).format("YYYY")
+
+        master.type = "movie"
         
         return (
             <Container>
@@ -83,12 +92,28 @@ class Movie extends React.Component {
                             <h3 id="noResults">No Recommendations to Display</h3>
                         </Results>
                     ) : (   
+                            
                             <Results>
+                                <div id="showingFor">
+                                    <h3>Showing Recommendations For</h3>
+                                    <div className="singleResult">
+                                        <img src={`https://image.tmdb.org/t/p/w500${master.poster_path}`} alt="Film Pic" />
+                                        <h5>{master.title}</h5>
+                                        <p className="filmYear">({masterFormattedDate})</p>
+                                        <div id="showingForButtons">
+                                            <button className={"btn btn-danger saveMovie"} onClick={() => this.saveMovie(master)}>{"Add to Favorites"}</button>
+                                            <Link onClick={() => this.props.setState({film: master})} to="/singleFilm" className={"btn btn-danger viewDetails"}>
+                                                View Details
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <h3 id="yourRecs">Your Recommendations</h3>
 
                                 {movies.map((movie, i) => {
                                     let formattedDate = Moment(movie.release_date).format("YYYY")
+                                    movie.type = "movie"
                                     return (
                                         <SingleResult
                                             key={i}

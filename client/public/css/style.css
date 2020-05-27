@@ -116,6 +116,31 @@ body {
 }
 
 /* =================================
+            Showing For
+================================= */
+
+#showingFor {
+    /* background-image: url(../img/banner.png); */
+    margin-bottom: 50px;
+    padding: 35px 50px;
+    text-align: center;
+    border: 5px solid #525252;
+    border-radius: 8px;
+}
+
+#showingFor h3 {
+    margin-bottom: 30px;
+}
+
+#showingForButtons {
+    margin: 0 auto;
+}
+
+#showingForButtons button {
+    margin: 10px;
+}
+
+/* =================================
             Results
 ================================= */
 

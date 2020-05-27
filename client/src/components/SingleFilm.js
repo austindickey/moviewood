@@ -10,7 +10,16 @@ export default class SingleFilm extends Component {
     }
 
     async grabActors() {
-        const url = `/api/actors/${this.props.film.id}`
+        let url = ""
+
+        if (this.props.film.type === "movie") {
+            url = `/api/actors/movie/${this.props.film.id}`
+        } else if (this.props.film.type === "show") {
+            url = `/api/actors/tv/${this.props.film.id}`
+        }
+
+        console.log(url)
+
         const response = await fetch(url)
         const data = await response.json()
         const actors = data.cast

@@ -2,11 +2,12 @@ import React from "react"
 import Container from "./Container"
 import { Results, SingleResult } from "./Results"
 import Moment from "moment"
-import { Redirect } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 
 class Show extends React.Component {
     state = {
         shows: [],
+        masterShow: {},
         searchQuery: "",
         redirect: null
     }
@@ -15,6 +16,8 @@ class Show extends React.Component {
         const url = `/api/tv/${this.state.searchQuery}`
         const response = await fetch(url)
         const shows = await response.json()
+        this.setState({masterShow: shows[shows.length -1]})
+        shows.pop()
         this.setState({shows})
     }
 
@@ -34,7 +37,8 @@ class Show extends React.Component {
             popularity: show.popularity,
             poster_path: show.poster_path,
             release_date: show.first_air_date,
-            title: show.name
+            title: show.name,
+            type: show.type
         }
         fetch("/add", {
             method: "POST",
@@ -60,7 +64,12 @@ class Show extends React.Component {
             return <Redirect to={this.state.redirect} />
         }
 
+        const master = this.state.masterShow
         const shows = this.state.shows
+
+        let masterFormattedDate = Moment(master.first_air_date).format("YYYY")
+
+        master.type = "show"
 
         return (
             <Container>
@@ -81,12 +90,26 @@ class Show extends React.Component {
                         </Results>
                     ) : (   
                             <Results>
+                                <div id="showingFor">
+                                    <h3>Showing Recommendations For</h3>
+                                    <div className="singleResult">
+                                        <img src={`https://image.tmdb.org/t/p/w500${master.poster_path}`} alt="Film Pic" />
+                                        <h5>{master.name}</h5>
+                                        <p className="filmYear">({masterFormattedDate})</p>
+                                        <div id="showingForButtons">
+                                            <button className={"btn btn-danger saveMovie"} onClick={() => this.saveShow(master)}>{"Add to Favorites"}</button>
+                                            <Link onClick={() => this.props.setState({film: master})} to="/singleFilm" className={"btn btn-danger viewDetails"}>
+                                                View Details
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <h3 id="yourRecs">Your Recommendations</h3>
 
                                 {shows.map((show, i) => {
                                     let formattedDate = Moment(show.first_air_date).format("YYYY")
-
+                                    show.type = "show"
                                     return (
                                         <SingleResult
                                             key={i}

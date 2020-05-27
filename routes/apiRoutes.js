@@ -18,23 +18,30 @@ function movieSearch(req, res) {
             let movieData = []
             const promiseArr = []
 
+            // Creating the promises urls for the recommendations
             for (let i = 0; i < recommendations.length; i++) {
 
                 namesOnly.push(recommendations[i].Name.toLowerCase())
-
                 const singleUrl = `https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&language=en-US&page=1&query=${recommendations[i].Name}`
-
                 promiseArr.push(axios.get(singleUrl))
 
             }
 
-            Promise.all(promiseArr).then(singleResponse => {
+            // Logic for the main search title
+            const masterSearch = `https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&language=en-US&page=1&query=${searchQuery}`
+            promiseArr.push(axios.get(masterSearch))
+
+            // Runs All Promises
+            Promise.all(promiseArr).then(output => {
                         
-                for (let x = 0; x < singleResponse.length; x++) {
-                    let single = singleResponse[x].data.results
+                for (let x = 0; x < output.length; x++) {
+                    let single = output[x].data.results
 
                     for (let z = 0; z < single.length; z++) {
                         if (namesOnly.includes(single[z].title.toLowerCase())) {
+                            movieData.push(single[z])
+                            break
+                        } else if (searchQuery.toLowerCase() === single[z].title.toLowerCase()) {
                             movieData.push(single[z])
                             break
                         }
@@ -67,23 +74,30 @@ function showSearch(req, res) {
             let showData = []
             const promiseArr = []
 
+            // Creating the promises urls for the recommendations
             for (let i = 0; i < recommendations.length; i++) {
 
                 namesOnly.push(recommendations[i].Name.toLowerCase())
-
                 const singleUrl = `https://api.themoviedb.org/3/search/tv?api_key=${tmdbApiKey}&language=en-US&page=1&query=${recommendations[i].Name}`
-
                 promiseArr.push(axios.get(singleUrl))
 
             }
 
-            Promise.all(promiseArr).then(singleResponse => {
+            // Logic for the main search title
+            const masterSearch = `https://api.themoviedb.org/3/search/tv?api_key=${tmdbApiKey}&language=en-US&page=1&query=${searchQuery}`
+            promiseArr.push(axios.get(masterSearch))
+
+            // Runs All Promises
+            Promise.all(promiseArr).then(output => {
                         
-                for (let x = 0; x < singleResponse.length; x++) {
-                    let single = singleResponse[x].data.results
+                for (let x = 0; x < output.length; x++) {
+                    let single = output[x].data.results
 
                     for (let z = 0; z < single.length; z++) {
                         if (namesOnly.includes(single[z].name.toLowerCase())) {
+                            showData.push(single[z])
+                            break
+                        } else if (searchQuery.toLowerCase() === single[z].name.toLowerCase()) {
                             showData.push(single[z])
                             break
                         }
@@ -102,11 +116,28 @@ function showSearch(req, res) {
     
 }
 
-function getActors(req, res) {
+function getActorsMovie(req, res) {
     const tmdbApiKey = process.env.tmdbApiKey
     let filmId = req.params.filmId
     
     const url = `https://api.themoviedb.org/3/movie/${filmId}/credits?api_key=${tmdbApiKey}`
+
+    axios.get(url)
+        .then(response => {
+            let actors = response.data
+            res.send(actors)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    
+}
+
+function getActorsShow(req, res) {
+    const tmdbApiKey = process.env.tmdbApiKey
+    let filmId = req.params.filmId
+    
+    const url = `https://api.themoviedb.org/3/tv/${filmId}/credits?api_key=${tmdbApiKey}`
 
     axios.get(url)
         .then(response => {
@@ -151,7 +182,9 @@ router.get("/api/movie/:search", movieSearch)
 
 router.get("/api/tv/:search", showSearch)
 
-router.get("/api/actors/:filmId", getActors)
+router.get("/api/actors/movie/:filmId", getActorsMovie)
+
+router.get("/api/actors/tv/:filmId", getActorsShow)
 
 router.get("/search/:type/:adults/:genres/:year", occasionSearch)
 
