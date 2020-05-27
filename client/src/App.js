@@ -34,7 +34,7 @@ function App() {
         <Route exact path="/home" component={Home} />
         <Route exact path="/movies" component={() => <MovieSearch username={state.username} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
         <Route exact path="/tv" component={() => <ShowSearch username={state.username} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
-        <Route exact path="/occasion" component={() => <OccasionSearch isLoggedIn={state.isLoggedIn} />} />
+        <Route exact path="/occasion" component={() => <OccasionSearch isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
         <Route exact path="/search" component={() => <OccasionResults username={state.username} searchResults={state.searchResults} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
         <Route exact path="/favorites" component={() => <ShowFavorites username={state.username} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
         <Route exact path="/singleFilm" component={() => <SingleFilm username={state.username} isLoggedIn={state.isLoggedIn} film={state.film}/>} />

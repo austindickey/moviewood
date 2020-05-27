@@ -28,6 +28,13 @@ class Show extends React.Component {
         })
     }
 
+    listenForEnter = (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault()
+            this.showSearch()
+        }
+    }
+
     saveShow(show) {
         const data = {
             adult: show.adult,
@@ -40,7 +47,10 @@ class Show extends React.Component {
             title: show.name,
             type: show.type
         }
-        fetch("/add", {
+
+        const username = this.props.username
+
+        fetch(`/add/${username}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -78,7 +88,7 @@ class Show extends React.Component {
                         <h3>Search for a TV Show</h3>
                         <form className="form-inline">
                             <div className="form-group mb-2">
-                                <input type="text" name="searchQuery" value={this.state.searchQuery} onChange={(event) => this.handleInputChange(event)} className="form-control" id="searchQuery" placeholder="TV Show Name" />
+                                <input type="text" name="searchQuery" value={this.state.searchQuery} onChange={(event) => this.handleInputChange(event)} onKeyDown={(event) => this.listenForEnter(event)} className="form-control" id="searchQuery" placeholder="TV Show Name" />
                             </div>
                         </form>
                         <button className="btn btn-danger mb-2" id="showSearch" onClick={() => this.showSearch()}>Search</button>

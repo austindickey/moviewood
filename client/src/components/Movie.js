@@ -28,6 +28,13 @@ class Movie extends React.Component {
         })
     }
 
+    listenForEnter = (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault()
+            this.movieSearch()
+        }
+    }
+
     saveMovie(movie) {
         const data = {
             adult: movie.adult,
@@ -81,7 +88,7 @@ class Movie extends React.Component {
                         <h3>Search for a Movie</h3>
                         <form className="form-inline">
                             <div className="form-group mb-2">
-                                <input type="text" name="searchQuery" value={this.state.searchQuery} onChange={(event) => this.handleInputChange(event)} className="form-control" id="searchQuery" placeholder="Movie Name" />
+                                <input type="text" name="searchQuery" value={this.state.searchQuery} onChange={(event) => this.handleInputChange(event)} onKeyDown={(event) => this.listenForEnter(event)} className="form-control" id="searchQuery" placeholder="Movie Name" />
                             </div>
                         </form>
                         <button className="btn btn-danger mb-2" id="movieSearchButton" onClick={() => this.movieSearch()}>Search</button>
