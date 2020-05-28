@@ -31,7 +31,7 @@ export default class Search extends Component {
             popularity: movie.popularity,
             poster_path: movie.poster_path,
             release_date: movie.release_date,
-            title: movie.title,
+            title: movie.title === undefined ? movie.name : movie.title,
             type: movie.type
         }
 
