@@ -173,6 +173,30 @@ function getRatingMovie(req, res) {
     
 }
 
+function getRatingTV(req, res) {
+    const tmdbApiKey = process.env.tmdbApiKey
+    let filmId = req.params.filmId
+    
+    const url = `https://api.themoviedb.org/3/tv/${filmId}/content_ratings?api_key=${tmdbApiKey}`
+
+    axios.get(url)
+        .then(response => {
+            let ratingsArray = response.data.results
+
+            for (let i = 0; i < ratingsArray.length; i++) {
+                if (ratingsArray[i].iso_3166_1 === "US") {
+                    let rating = {value: ratingsArray[i].rating}
+                    res.send(rating)
+                    break
+                }
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    
+}
+
 function occasionSearch(req, res) {
 
     const tmdbApiKey = process.env.tmdbApiKey
@@ -211,6 +235,8 @@ router.get("/api/actors/movie/:filmId", getActorsMovie)
 router.get("/api/actors/tv/:filmId", getActorsShow)
 
 router.get("/api/rating/movie/:filmId", getRatingMovie)
+
+router.get("/api/rating/tv/:filmId", getRatingTV)
 
 router.get("/search/:type/:adults/:genres/:year", occasionSearch)
 

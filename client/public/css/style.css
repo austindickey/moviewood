@@ -112,6 +112,12 @@ body {
     margin-bottom: 50px;
 }
 
+#dataFrom {
+    font-style: italic;
+    color: #F66363;
+    margin-bottom: 0;
+}
+
 /* =================================
             Search Bar
 ================================= */
