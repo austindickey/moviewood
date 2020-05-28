@@ -149,6 +149,30 @@ function getActorsShow(req, res) {
     
 }
 
+function getRatingMovie(req, res) {
+    const tmdbApiKey = process.env.tmdbApiKey
+    let filmId = req.params.filmId
+
+    const url = `https://api.themoviedb.org/3/movie/${filmId}/release_dates?api_key=${tmdbApiKey}`
+
+    axios.get(url)
+        .then(response => {
+            let ratingsArray = response.data.results
+
+            for (let i = 0; i < ratingsArray.length; i++) {
+                if (ratingsArray[i].iso_3166_1 === "US") {
+                    let rating = {value: ratingsArray[i].release_dates[0].certification}
+                    res.send(rating)
+                    break
+                }
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    
+}
+
 function occasionSearch(req, res) {
 
     const tmdbApiKey = process.env.tmdbApiKey
@@ -185,6 +209,8 @@ router.get("/api/tv/:search", showSearch)
 router.get("/api/actors/movie/:filmId", getActorsMovie)
 
 router.get("/api/actors/tv/:filmId", getActorsShow)
+
+router.get("/api/rating/movie/:filmId", getRatingMovie)
 
 router.get("/search/:type/:adults/:genres/:year", occasionSearch)
 

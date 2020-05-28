@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom"
 export default class SingleFilm extends Component {
     state = {
         actors: [],
+        rating: "",
         redirect: null
     }
 
@@ -18,13 +19,25 @@ export default class SingleFilm extends Component {
             url = `/api/actors/tv/${this.props.film.id}`
         }
 
-        console.log(url)
-
         const response = await fetch(url)
         const data = await response.json()
         const actors = data.cast
         actors.length = 6
         this.setState({actors})
+    }
+
+    async grabRating() {
+        let url = ""
+
+        if (this.props.film.type === "movie") {
+            url = `/api/rating/movie/${this.props.film.id}`
+        } else if (this.props.film.type === "show") {
+            url = `/api/rating/tv/${this.props.film.id}`
+        }
+
+        const response = await fetch(url)
+        const data = await response.json()
+        this.setState({rating: data.value})
     }
 
     componentDidMount() {
@@ -34,6 +47,7 @@ export default class SingleFilm extends Component {
             this.setState({ redirect: "/" })
         }
 
+        this.grabRating()
         this.grabActors()
     }
 
@@ -68,6 +82,7 @@ export default class SingleFilm extends Component {
             return <Redirect to={this.state.redirect} />
         }
 
+        let rating = this.state.rating
         let actors = this.state.actors
         const data = this.props
 
@@ -167,9 +182,10 @@ export default class SingleFilm extends Component {
                         <div className="col-md-8">
                             <div id="data">
                                 <h3>{data.film.title === undefined ? data.film.name : data.film.title}</h3>
-                                <p className="singleFilmDate">Release Date: {formattedDate}</p>
-                                <p><span>Genres:</span> {genres.join(", ")}</p>
-                                <p><span>Summary:</span> {data.film.overview}</p>
+                                <p><span>Release Date:</span> &nbsp;{formattedDate}</p>
+                                <p><span>Rating:</span> &nbsp;{rating}</p>
+                                <p><span>Genres:</span> &nbsp;{genres.join(", ")}</p>
+                                <p><span>Summary:</span> &nbsp;{data.film.overview}</p>
                                 <button className={"btn btn-danger saveMovie"} onClick={() => this.saveFav(data.film)}>Add to Favorites</button>
 
                                 <hr/>
@@ -178,7 +194,7 @@ export default class SingleFilm extends Component {
                                 <div id="filmActors">
                                     {actors.map((actor, i) => {
                                         return (
-                                            <div className="singleActor">
+                                            <div key={i} className="singleActor">
                                                 <img className="singleActorPic" src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt="Actor Pic" />
                                                 <h5>{actor.name}</h5>
                                                 <p className="characterName">Character: {actor.character}</p>

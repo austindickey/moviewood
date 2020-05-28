@@ -79,7 +79,7 @@ export default class Search extends Component {
                                         filmImg={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
                                         dbBtnText={"Add to Favorites"}
                                         btnClassNames={"btn btn-danger saveMovie"}
-                                        detailsClickFunc={() => this.props.setState(film)}
+                                        detailsClickFunc={() => this.props.setState({film})}
                                         dbClickFunc={() => this.saveMovie(film)}
                                     />
                                 )

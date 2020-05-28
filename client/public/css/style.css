@@ -259,10 +259,10 @@ body {
     width: 100%;
 }
 
-.singleFilmDate,
 #data span {
     font-style: italic;
     color: #F66363;
+    font-weight: 500;
 }
 
 #filmActors {
@@ -316,7 +316,7 @@ body {
 }
 
 #occasionSubmit {
-    margin: auto;
+    margin: 0 auto;
 }
 
 /* =================================
