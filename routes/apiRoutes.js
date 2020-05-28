@@ -151,6 +151,7 @@ function getActorsShow(req, res) {
 }
 
 function occasionSearch(req, res) {
+
     const tmdbApiKey = process.env.tmdbApiKey
     let type = req.params.type
     let adults = req.params.adults

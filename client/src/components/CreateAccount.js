@@ -126,11 +126,11 @@ export default class LoginBox extends Component {
                 alert("Your account has been created.")
             })
 
+            this.setState({ redirect: "/home" })
             this.props.setState({
                 username: this.state.username,
                 isLoggedIn: true
             })
-            this.setState({ redirect: "/home" })
         }
     }
 
@@ -142,7 +142,6 @@ export default class LoginBox extends Component {
     }
 
     render() {
-        console.log("Redirect: ", this.state.redirect)
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />
         }

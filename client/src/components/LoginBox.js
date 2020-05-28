@@ -17,11 +17,11 @@ export default class LoginBox extends Component {
         const data = await response.json()
 
         if (data.username === name && data.password === pass) {
+            this.setState({ redirect: "/home" })
             this.props.setState({
                 username: data.username,
                 isLoggedIn: true
             })
-            this.setState({ redirect: "/home" })
         } else if (data.username === name && data.password !== pass) {
             this.setState({password: ""})
             alert("The password you entered was incorrect.")

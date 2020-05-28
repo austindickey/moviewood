@@ -10,37 +10,16 @@ export default class Search extends Component {
         redirect: null
     }
 
-    // async occasionSearch() {
-    //     const data = this.props
-    //     console.log(data)
-
-    //     let type = data.type
-    //     let adults = data.adults
-    //     let genres = data.genre
-    //     let year = data.year
-
-    //     if (year === "") {
-    //         year = "noYear"
-    //     }
-
-    //     const url = `/search/${type}/${adults}/${genres}/${year}`
-    //     console.log("URL: ", url)
-    //     const response = await fetch(url)
-    //     const searchResults = await response.json()
-    //     this.setState({searchResults})
-    // }
-
     componentDidMount() {
         const logCheck = this.props.isLoggedIn
         console.log(logCheck)
 
-        // if (!logCheck) {
-        //     this.setState({ redirect: "/" })
-        // }
+        if (!logCheck) {
+            this.setState({ redirect: "/" })
+        }
 
         this.setState({ searchResults: this.props.searchResults })
-
-        // this.occasionSearch()
+       
     }
 
     saveMovie(movie) {
@@ -52,9 +31,13 @@ export default class Search extends Component {
             popularity: movie.popularity,
             poster_path: movie.poster_path,
             release_date: movie.release_date,
-            title: movie.title
+            title: movie.title,
+            type: movie.type
         }
-        fetch("/add", {
+
+        const username = this.props.username
+
+        fetch(`/add/${username}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -78,7 +61,7 @@ export default class Search extends Component {
 
                     {!search.length ? (
                         <Results>
-                            <h3 id="noResults">No Search Results to Display</h3>
+                            <h3 className="noResults">No Search Results to Display</h3>
                         </Results>
                     ) : (
                             <Results>

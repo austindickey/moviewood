@@ -46,7 +46,8 @@ export default class SingleFilm extends Component {
             popularity: film.popularity,
             poster_path: film.poster_path,
             release_date: film.release_date,
-            title: film.title
+            title: film.title,
+            type: film.type
         }
 
         const username = this.props.username

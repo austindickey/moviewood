@@ -49,8 +49,7 @@ module.exports = {
   },
   removeSingleFavorite: function(req, res) {
     db.Users
-      .findOneAndUpdate({ username: req.params.username }, { $pull: { favorites: { id: req.params.id } } }, {new: true})
-      // .updateOne({ username: req.params.username }, { $pull: { favorites: { $elemMatch: { id: req.params.id } } } })
+      .findOneAndUpdate({ username: req.params.username }, { $pull: { favorites: { id: parseInt(req.params.id) } } }, {new: true})
       .then(dbModel => res.send(dbModel))
       .catch(err => res.status(422).json(err))
   }

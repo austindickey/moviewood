@@ -14,9 +14,9 @@ export default class OccasionForm extends Component {
     componentDidMount() {
         const logCheck = this.props.isLoggedIn
 
-        // if (!logCheck) {
-        //     this.setState({ redirect: "/" })
-        // }
+        if (!logCheck) {
+            this.setState({ redirect: "/" })
+        }
     }
 
     handleInputChange = event => {
@@ -39,6 +39,17 @@ export default class OccasionForm extends Component {
         const response = await fetch(url)
         const searchResults = await response.json()
         console.log("Search Results: ",searchResults)
+
+        
+            for (let i = 0; i < searchResults.length; i++) {
+                if (this.state.type === "movie") {
+                    searchResults[i].type = "movie"
+                } else if (this.state.type === "tv") {
+                    searchResults[i].type = "show"
+                }
+            }
+
+        this.setState({ redirect: "/search" })
         this.props.setState({searchResults})
     }
 
@@ -104,8 +115,9 @@ export default class OccasionForm extends Component {
                             <label htmlFor="formYear">Specific Year &mdash; (For TV shows, this is the first air date year.)</label>
                             <input name="year" type="text" className="form-control" id="formYear" placeholder="optional" onChange={(event) => this.handleInputChange(event)}/>
                         </div>
-                        <button type="submit" className="btn btn-danger" id="formSubmit" onClick={ () => this.occasionSearch() }>Submit</button>
+                        
                     </form>
+                    <button className="btn btn-danger" id="formSubmit" onClick={ () => this.occasionSearch() }>Submit</button>
                 </div>
             </Container>
         )
