@@ -162,7 +162,7 @@ body {
 }
 
 #showingForButtons button {
-    margin: 10px;
+    margin: 0 10px;
 }
 
 /* =================================
@@ -184,7 +184,7 @@ body {
     margin-bottom: 25px;
 }
 
-#results {
+.results {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -193,8 +193,21 @@ body {
     text-align: center;
 }
 
+.favResults {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: 50px 0;
+    text-align: center;
+    padding: 25px 0;
+    border: 5px solid #525252;
+    border-radius: 8px;
+    background-image: url(../img/banner.png);
+}
+
 .singleResult {
-    margin: 10px;
+    margin: 15px 10px;
     text-align: center;
 }
 
@@ -208,7 +221,7 @@ body {
 
 .singleResult h5 {
     max-width: 200px;
-    margin: 15px auto 8px auto;
+    margin: 8px auto;
 }
 
 .singleResult img {
@@ -222,6 +235,7 @@ body {
 
 .filmYear {
     font-style: italic;
+    margin-bottom: 8px;
 }
 
 /* =================================

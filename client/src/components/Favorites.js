@@ -55,61 +55,68 @@ export default class Favorites extends Component {
         return (
             <Container>
                 <div className="contentHolder">
-                    {!movieFavs.length ? (
-                        <Results>
-                            <h3 className="noResults">No Favorites Movies Have Been Saved</h3>
-                        </Results>
-                    ) : (   
-                        <Results>
+                    <div className="row">
+                        <div className="col-lg-6">
+                            {!movieFavs.length ? (
+                                <Results resultsClass="results">
+                                    <h3 className="noResults">No Favorite Movies Have Been Saved</h3>
+                                </Results>
+                            ) : (   
+                                <Results resultsClass="favResults">
 
-                            <h3 id="yourRecs">Your Favorite Movies</h3>
+                                    <h3 id="yourRecs">Your Favorite Movies</h3>
 
-                            {movieFavs.map((fav, i) => {
-                                let formattedDate = Moment(fav.release_date ? fav.release_date : fav.first_air_date).format("YYYY")
+                                    {movieFavs.map((fav, i) => {
+                                        let formattedDate = Moment(fav.release_date ? fav.release_date : fav.first_air_date).format("YYYY")
 
-                                return (
-                                    <SingleResult
-                                        key={i}
-                                        title={fav.title}
-                                        year={formattedDate}
-                                        filmImg={`https://image.tmdb.org/t/p/w500${fav.poster_path}`}
-                                        dbBtnText={"Remove Favorite"}
-                                        btnClassNames={"btn btn-danger removeFav"}
-                                        detailsClickFunc={ () => this.props.setState({film: fav}) }
-                                        dbClickFunc={() => this.removeFav(fav)}
-                                    />
-                                )
-                            })}
-                        </Results>
-                    )}
+                                        return (
+                                            <SingleResult
+                                                key={i}
+                                                title={fav.title}
+                                                year={formattedDate}
+                                                filmImg={`https://image.tmdb.org/t/p/w500${fav.poster_path}`}
+                                                dbBtnText={"Remove Favorite"}
+                                                btnClassNames={"btn btn-danger removeFav"}
+                                                detailsClickFunc={ () => this.props.setState({film: fav}) }
+                                                dbClickFunc={() => this.removeFav(fav)}
+                                            />
+                                        )
+                                    })}
+                                </Results>
+                            )}
+                        </div>
+                        
+                        <div className="col-lg-6">
+                            {!tvFavs.length ? (
+                                <Results resultsClass="results">
+                                    <h3 className="noResults">No Favorite TV Shows Have Been Saved</h3>
+                                </Results>
+                            ) : (   
+                                <Results resultsClass="favResults">
 
-                    {!tvFavs.length ? (
-                        <Results>
-                            <h3 className="noResults">No Favorites TV Shows Have Been Saved</h3>
-                        </Results>
-                    ) : (   
-                        <Results>
+                                    <h3 id="yourRecs">Your Favorite TV Shows</h3>
 
-                            <h3 id="yourRecs">Your Favorite TV Shows</h3>
+                                    {tvFavs.map((fav, i) => {
+                                        let formattedDate = Moment(fav.release_date ? fav.release_date : fav.first_air_date).format("YYYY")
 
-                            {tvFavs.map((fav, i) => {
-                                let formattedDate = Moment(fav.release_date ? fav.release_date : fav.first_air_date).format("YYYY")
-
-                                return (
-                                    <SingleResult
-                                        key={i}
-                                        title={fav.title}
-                                        year={formattedDate}
-                                        filmImg={`https://image.tmdb.org/t/p/w500${fav.poster_path}`}
-                                        dbBtnText={"Remove Favorite"}
-                                        btnClassNames={"btn btn-danger removeFav"}
-                                        detailsClickFunc={ () => this.props.setState({film: fav}) }
-                                        dbClickFunc={() => this.removeFav(fav)}
-                                    />
-                                )
-                            })}
-                        </Results>
-                    )}
+                                        return (
+                                            <SingleResult
+                                                key={i}
+                                                title={fav.title}
+                                                year={formattedDate}
+                                                filmImg={`https://image.tmdb.org/t/p/w500${fav.poster_path}`}
+                                                dbBtnText={"Remove Favorite"}
+                                                btnClassNames={"btn btn-danger removeFav"}
+                                                detailsClickFunc={ () => this.props.setState({film: fav}) }
+                                                dbClickFunc={() => this.removeFav(fav)}
+                                            />
+                                        )
+                                    })}
+                                </Results>
+                            )}
+                        </div>
+                    </div>
+                    
                 </div>
             </Container>
         )

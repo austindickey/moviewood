@@ -1,7 +1,6 @@
 const router = require("express").Router()
 const axios = require('axios')
 require("dotenv").config()
-const favorites = require("../controllers/favorites")
 const users = require("../controllers/users")
 
 function movieSearch(req, res) {

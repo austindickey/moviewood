@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom"
 
-export function Results({ children }) {
-    return <div id="results">{children}</div>
+export function Results({ resultsClass, children }) {
+    return <div className={resultsClass}>{children}</div>
 }
 
 export function SingleResult({
