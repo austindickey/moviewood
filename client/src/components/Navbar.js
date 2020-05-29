@@ -1,11 +1,18 @@
 import React, {useState} from "react"
 import { Link } from "react-router-dom"
 
-function Navbar() {
+function Navbar(props) {
   const [route, setRoute] = useState(window.location.pathname)
 
   function getRoute(name) {
     setRoute(name)
+  }
+
+  function logoutSubmit() {
+    props.setState({
+      username: "",
+      isLoggedIn: null
+    })
   }
 
   return (
@@ -30,6 +37,16 @@ function Navbar() {
           Your Favorites
         </Link>
       </div>
+
+      {!props.isLoggedIn ? (
+          <div/>
+      ) : (
+        <div class="navbar-nav ml-auto">
+          <span id="loggedInAs"><span>Logged in as:</span> &nbsp;{props.username}</span>
+          <button className="btn btn-danger mb-2" id="logoutButton" onClick={() => logoutSubmit()}>Logout</button>
+        </div>
+      )}
+      
     </nav>
   )
 }

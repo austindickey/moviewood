@@ -28,7 +28,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar />
+        <Navbar props={state} username={state.username} isLoggedIn={state.isLoggedIn} setState={updateState}/>
         <Route exact path="/" component={() => <Login username={state.username} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
         <Route exact path="/new-account" component={() => <NewAccount username={state.username} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
         <Route exact path="/home" component={Home} />

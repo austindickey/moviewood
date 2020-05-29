@@ -65,6 +65,7 @@ export default class LoginBox extends Component {
                         <h4 id="newUsers">New Users</h4>
                         <Link to="/new-account" className={"btn btn-danger"}>Create Account</Link>
                     </div>
+                    <div id="spacer"/>
                 </div>
             </Container>
         )

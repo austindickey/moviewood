@@ -1,14 +1,21 @@
 /* =================================
             Body
 ================================= */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 body {
     background-image: url(../img/bg.png);
     font-family: 'Dosis', sans-serif;
+    position: relative;
 }
 
 .contentHolder {
-    min-height: calc(100vh - 266px);
+    min-height: calc(100vh - 91px - 75px - 100px);
 }
 
 /* =================================
@@ -48,7 +55,10 @@ body {
 #loginSubmit,
 #createSubmit {
     margin: 15px auto;
+}
 
+#spacer {
+    height: 30px;
 }
 
 /* =================================
@@ -88,6 +98,19 @@ body {
     content: " ";
 }
 
+#loggedInAs {
+    margin: auto 20px auto 0;
+}
+
+#loggedInAs span {
+    color: #F66363;
+    font-weight: 500;
+}
+
+#logoutButton {
+    margin: auto 25px auto 0;
+}
+
 /* =================================
             Home Page
 ================================= */
@@ -109,7 +132,7 @@ body {
     text-align: center;
     border: 5px solid #525252;
     border-radius: 8px;
-    margin-bottom: 50px;
+    margin: 50px 0;
 }
 
 #dataFrom {
@@ -249,7 +272,6 @@ body {
 ================================= */
 
 #filmDetails {
-    /* width: 100%; */
     margin: 50px 0;
     display: flex;
     flex-wrap: wrap;
