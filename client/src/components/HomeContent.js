@@ -11,7 +11,7 @@ export default class HomeContent extends Component {
 
                 <div id="aboutUs">
                     <h3>About Us</h3>
-                    <p>Tired of wasting time looking for something to watch? Here at Moviewood, we strive to give you the best movie and tv show recommendations based off of your current favorites. We know that time is money, so stop wasting your valuable time and jump right into another great movie or tv show. You can search for recommendations based off of a movie title, a tv show title, or film features. You can also save your favorites.</p>
+                    <p>Tired of wasting time looking for something to watch? Here at Moviewood, we strive to give you the best movie and tv show recommendations based off of your current favorites. We know that time is money, so stop wasting your valuable time and jump right into another great movie or tv show. You can search for recommendations based off of a movie title, a tv show title, film features, or from the favorites you have saved to your account.</p>
                     <p id="dataFrom">This site utilizes data from TasteDive API and TMDB API.</p>
                 </div>
             </Container>

@@ -58,12 +58,12 @@ export default class Search extends Component {
             <Container>
                 {!search.length ? (
                     <Results resultsClass="results">
-                        <h3 className="noResults">No Search Results to Display</h3>
+                        <h3 className="noResults">No Recommendations to Display</h3>
                     </Results>
                 ) : (
                     <Results resultsClass="results">
 
-                        <h3 id="yourRecs">Your Search Results</h3>
+                        <h3 id="yourRecs">Your Recommendations</h3>
 
                         {search.map((film, i) => {
                             let formattedDate = Moment(film.release_date ? film.release_date : film.first_air_date).format("YYYY")
