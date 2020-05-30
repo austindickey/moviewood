@@ -197,7 +197,7 @@ function getRatingTV(req, res) {
     
 }
 
-function occasionSearch(req, res) {
+function featuresSearch(req, res) {
 
     const tmdbApiKey = process.env.tmdbApiKey
     let type = req.params.type
@@ -238,7 +238,7 @@ router.get("/api/rating/movie/:filmId", getRatingMovie)
 
 router.get("/api/rating/tv/:filmId", getRatingTV)
 
-router.get("/search/:type/:adults/:genres/:year", occasionSearch)
+router.get("/search/:type/:adults/:genres/:year", featuresSearch)
 
 router.post("/add/:username", users.addFavorites)
 

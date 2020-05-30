@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Container from './Container'
 import { Redirect } from "react-router-dom"
 
-export default class OccasionForm extends Component {
+export default class Features extends Component {
     state = {
         redirect: null,
         type: "movie",
@@ -26,7 +26,7 @@ export default class OccasionForm extends Component {
         })
     }
 
-    async occasionSearch() {
+    async featuresSearch() {
         const formData = this.state
 
         let type = formData.type
@@ -60,7 +60,7 @@ export default class OccasionForm extends Component {
         
         return (
             <Container>
-                <div id="occasionTitle">
+                <div id="featuresTitle">
                     <h3>Search by Features</h3>
                     <p>Your results will be sorted by most popular first.</p>
                 </div>
@@ -117,7 +117,7 @@ export default class OccasionForm extends Component {
                         </div>
                         
                     </form>
-                    <button className="btn btn-danger" id="occasionSubmit" onClick={ () => this.occasionSearch() }>Submit</button>
+                    <button className="btn btn-danger" id="featuresSubmit" onClick={ () => this.featuresSearch() }>Submit</button>
                 </div>
             </Container>
         )

@@ -32,7 +32,7 @@ function Navbar(props) {
         <Link onClick={() => getRoute("/tv")} to="/tv" className={route === "/tv" ? "nav-link active" : "nav-link"}>
           Search by TV Show
         </Link>
-        <Link onClick={() => getRoute("/occasion")} to="/occasion" className={route === "/occasion" ? "nav-link active" : "nav-link"}>
+        <Link onClick={() => getRoute("/features")} to="/features" className={route === "/features" ? "nav-link active" : "nav-link"}>
           Search by Features
         </Link>
         <Link onClick={() => getRoute("/favorites")} to="/favorites" className={route === "/favorites" ? "nav-link active" : "nav-link"}>

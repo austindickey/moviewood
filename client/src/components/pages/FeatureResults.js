@@ -1,7 +1,7 @@
 import React from "react"
 import Search from "../Search"
 
-function OccasionResults(props) {
+function FeatureResults(props) {
   return (
 
     <Search {...props}/>
@@ -9,4 +9,4 @@ function OccasionResults(props) {
   )
 }
 
-export default OccasionResults
+export default FeatureResults
