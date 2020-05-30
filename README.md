@@ -1,2 +1,56 @@
 # moviewood
-Here you can find similar movies or tv shows to your favorites to watch next.
+Tired of wasting time looking for something to watch? Here at Moviewood, we strive to give you the best movie and tv show recommendations based off of your current favorites. We know that time is money, so stop wasting your valuable time and jump right into another great movie or tv show. You can search for recommendations based off of a movie title, a tv show title, or film features. You can also save your favorites.
+
+_This site utilizes data from TasteDive API and TMDB API._
+
+---
+
+### **NPM Dependencies**
+
+* axios
+* concurrently
+* dotenv
+* express
+* if-env
+* moment
+* mongoose
+* nodemon
+* react
+* react-dom
+* react-router-dom
+* react-scripts
+
+---
+
+### **Initial Setup**
+If you want to run this site locally, navigate to the moviewood folder in your terminal (after downloading or cloning of course), and install all the necessary dependencies with:
+
+```
+npm i
+```
+
+---
+
+Next, you will need to visit 2 sites and register for an api key (both sites will require you to make a free account):
+
+Taste Dive - https://tastedive.com/account/api_access
+
+TMDB - https://www.themoviedb.org/account/signup
+
+---
+
+Then, create a file named `.env` inside the root level, add the following to it, replacing the values with your API keys (no quotes) once you have them:
+
+```js
+tasteDiveApiKey=your-taste-dive-key
+tmdbApiKey=your-tmdb-key
+
+```
+
+---
+
+Finally, run:
+
+```
+npm start
+```
