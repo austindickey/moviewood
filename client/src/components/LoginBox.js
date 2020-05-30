@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Container from './Container'
+import React, { Component } from "react"
+import Container from "./Container"
 import { Link, Redirect } from "react-router-dom"
 
 export default class LoginBox extends Component {
@@ -45,6 +45,7 @@ export default class LoginBox extends Component {
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />
         }
+        
         return (
             <Container>
                 <div className="loginBox">

@@ -74,12 +74,11 @@ class Show extends React.Component {
             return <Redirect to={this.state.redirect} />
         }
 
-        const master = this.state.masterShow
         const shows = this.state.shows
+        const master = this.state.masterShow
+        master.type = "show"
 
         let masterFormattedDate = Moment(master.first_air_date).format("YYYY")
-
-        master.type = "show"
 
         return (
             <Container>

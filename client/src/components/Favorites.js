@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Container from './Container'
+import React, { Component } from "react"
+import Container from "./Container"
 import { Results, SingleResult } from "./Results"
 import Moment from "moment"
 import { Redirect } from "react-router-dom"
@@ -24,7 +24,6 @@ export default class Favorites extends Component {
 
     componentDidMount() {
         const logCheck = this.props.isLoggedIn
-        console.log(logCheck)
 
         if (!logCheck) {
             this.setState({ redirect: "/" })

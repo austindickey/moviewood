@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 import Container from "./Container"
 import Moment from "moment"
 import { Redirect } from "react-router-dom"
@@ -82,13 +82,13 @@ export default class SingleFilm extends Component {
             return <Redirect to={this.state.redirect} />
         }
 
+
+        const data = this.props
         let rating = this.state.rating
         let actors = this.state.actors
-        const data = this.props
+        let genres = data.film.genre_ids
 
         let formattedDate = Moment(data.film.release_date === undefined ? data.film.first_air_date : data.film.release_date).format("MMMM Do, YYYY")
-
-        let genres = data.film.genre_ids
 
         for (let i = 0; i < genres.length; i++) {
             switch (genres[i]) {

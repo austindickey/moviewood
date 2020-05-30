@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Container from './Container'
+import React, { Component } from "react"
+import Container from "./Container"
 
 export default class HomeContent extends Component {
     render() {

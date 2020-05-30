@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Container from './Container'
+import React, { Component } from "react"
+import Container from "./Container"
 import { Redirect } from "react-router-dom"
 
 export default class Features extends Component {
@@ -35,19 +35,16 @@ export default class Features extends Component {
         let year = formData.year
 
         const url = `/search/${type}/${adults}/${genres}/${year}`
-        console.log("URL: ", url)
         const response = await fetch(url)
         const searchResults = await response.json()
-        console.log("Search Results: ",searchResults)
-
         
-            for (let i = 0; i < searchResults.length; i++) {
-                if (this.state.type === "movie") {
-                    searchResults[i].type = "movie"
-                } else if (this.state.type === "tv") {
-                    searchResults[i].type = "show"
-                }
+        for (let i = 0; i < searchResults.length; i++) {
+            if (this.state.type === "movie") {
+                searchResults[i].type = "movie"
+            } else if (this.state.type === "tv") {
+                searchResults[i].type = "show"
             }
+        }
 
         this.setState({ redirect: "/search" })
         this.props.setState({searchResults})
@@ -115,7 +112,6 @@ export default class Features extends Component {
                             <label htmlFor="formYear">Specific Year &mdash; (For TV shows, this is the first air date year.)</label>
                             <input name="year" type="text" className="form-control" id="formYear" placeholder="optional" onChange={(event) => this.handleInputChange(event)}/>
                         </div>
-                        
                     </form>
                     <button className="btn btn-danger" id="featuresSubmit" onClick={ () => this.featuresSearch() }>Submit</button>
                 </div>

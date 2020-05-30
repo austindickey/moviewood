@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Container from './Container'
+import React, { Component } from "react"
+import Container from "./Container"
 import { Redirect } from "react-router-dom"
 
 export default class LoginBox extends Component {

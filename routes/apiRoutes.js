@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const axios = require('axios')
+const axios = require("axios")
 require("dotenv").config()
 const users = require("../controllers/users")
 
@@ -159,6 +159,7 @@ function getRatingMovie(req, res) {
         .then(response => {
             let ratingsArray = response.data.results
 
+            // Sorts through the ratings looking for the US rating
             for (let i = 0; i < ratingsArray.length; i++) {
                 if (ratingsArray[i].iso_3166_1 === "US") {
                     let rating = {value: ratingsArray[i].release_dates[0].certification}
@@ -183,6 +184,7 @@ function getRatingTV(req, res) {
         .then(response => {
             let ratingsArray = response.data.results
 
+            // Sorts through the ratings looking for the US rating
             for (let i = 0; i < ratingsArray.length; i++) {
                 if (ratingsArray[i].iso_3166_1 === "US") {
                     let rating = {value: ratingsArray[i].rating}
@@ -207,6 +209,7 @@ function featuresSearch(req, res) {
     
     let url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&language=en-US&sort_by=popularity.desc&include_adult=${adults}&include_video=false&page=1&with_genres=${genres}&year=${year}`
 
+    // Handles the logic for deciding which api call to make
     if (type === "movie" && year === "noYear") {
         url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&language=en-US&sort_by=popularity.desc&include_adult=${adults}&include_video=false&page=1&with_genres=${genres}`
     } else if (type === "tv" && year === "noYear") {

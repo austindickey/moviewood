@@ -74,12 +74,11 @@ class Movie extends React.Component {
             return <Redirect to={this.state.redirect} />
         }
 
-        const master = this.state.masterMovie
         const movies = this.state.movies
+        const master = this.state.masterMovie
+        master.type = "movie"
 
         let masterFormattedDate = Moment(master.release_date).format("YYYY")
-
-        master.type = "movie"
         
         return (
             <Container>
