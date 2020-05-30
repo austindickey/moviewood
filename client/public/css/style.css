@@ -7,6 +7,12 @@ body {
     font-family: 'Dosis', sans-serif;
 }
 
+/* This hides the footer on longer pages until the user reaches the bottom of the page. */
+.contentHolder {
+    z-index: 1;
+    background-image: url(../img/bg.png);
+}
+
 /* =================================
             Login
 ================================= */
@@ -359,6 +365,7 @@ footer {
     font-size: 18px;
     position: fixed;
     bottom: 0;
+    z-index: -1;
 }
 
 footer a {
