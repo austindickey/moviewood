@@ -57,37 +57,33 @@ export default class Search extends Component {
 
         return (
             <Container>
-                <div className="contentHolder">
+                {!search.length ? (
+                    <Results resultsClass="results">
+                        <h3 className="noResults">No Search Results to Display</h3>
+                    </Results>
+                ) : (
+                    <Results resultsClass="results">
 
-                    {!search.length ? (
-                        <Results resultsClass="results">
-                            <h3 className="noResults">No Search Results to Display</h3>
-                        </Results>
-                    ) : (
-                        <Results resultsClass="results">
+                        <h3 id="yourRecs">Your Search Results</h3>
 
-                            <h3 id="yourRecs">Your Search Results</h3>
+                        {search.map((film, i) => {
+                            let formattedDate = Moment(film.release_date ? film.release_date : film.first_air_date).format("YYYY")
 
-                            {search.map((film, i) => {
-                                let formattedDate = Moment(film.release_date ? film.release_date : film.first_air_date).format("YYYY")
-
-                                return (
-                                    <SingleResult
-                                        key={i}
-                                        title={film.title ? film.title : film.name}
-                                        year={formattedDate}
-                                        filmImg={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-                                        dbBtnText={"Add to Favorites"}
-                                        btnClassNames={"btn btn-danger saveMovie"}
-                                        detailsClickFunc={() => this.props.setState({film})}
-                                        dbClickFunc={() => this.saveMovie(film)}
-                                    />
-                                )
-                            })}
-                        </Results>
-                    )}
-
-                </div>
+                            return (
+                                <SingleResult
+                                    key={i}
+                                    title={film.title ? film.title : film.name}
+                                    year={formattedDate}
+                                    filmImg={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                                    dbBtnText={"Add to Favorites"}
+                                    btnClassNames={"btn btn-danger saveMovie"}
+                                    detailsClickFunc={() => this.props.setState({film})}
+                                    dbClickFunc={() => this.saveMovie(film)}
+                                />
+                            )
+                        })}
+                    </Results>
+                )}
             </Container>
         )
     }

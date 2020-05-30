@@ -83,60 +83,57 @@ class Movie extends React.Component {
         
         return (
             <Container>
-                <div className="contentHolder">
-                    <div id="searchBox">
-                        <h3>Search for a Movie</h3>
-                        <form className="form-inline">
-                            <div className="form-group mb-2">
-                                <input type="text" name="searchQuery" value={this.state.searchQuery} onChange={(event) => this.handleInputChange(event)} onKeyDown={(event) => this.listenForEnter(event)} className="form-control" id="searchQuery" placeholder="Movie Name" />
-                            </div>
-                        </form>
-                        <button className="btn btn-danger mb-2" id="movieSearchButton" onClick={() => this.movieSearch()}>Search</button>
-                    </div>
+                <div id="searchBox">
+                    <h3>Search for a Movie</h3>
+                    <form className="form-inline">
+                        <div className="form-group mb-2">
+                            <input type="text" name="searchQuery" value={this.state.searchQuery} onChange={(event) => this.handleInputChange(event)} onKeyDown={(event) => this.listenForEnter(event)} className="form-control" id="searchQuery" placeholder="Movie Name" />
+                        </div>
+                    </form>
+                    <button className="btn btn-danger mb-2" id="movieSearchButton" onClick={() => this.movieSearch()}>Search</button>
+                </div>
 
-                    {!movies.length ? (
-                        <Results resultsClass="results">
-                            <h3 className="noResults">No Recommendations to Display</h3>
-                        </Results>
-                    ) : (
-                        <Results resultsClass="results">
-                            <div id="showingFor">
-                                <h3>Showing Recommendations For</h3>
-                                <div className="singleResult">
-                                    <img src={`https://image.tmdb.org/t/p/w500${master.poster_path}`} alt="Film Pic" />
-                                    <h5>{master.title}</h5>
-                                    <p className="filmYear">({masterFormattedDate})</p>
-                                    <div id="showingForButtons">
-                                        <button className={"btn btn-danger saveMovie"} onClick={() => this.saveMovie(master)}>{"Add to Favorites"}</button>
-                                        <Link onClick={() => this.props.setState({film: master})} to="/singleFilm" className={"btn btn-danger viewDetails"}>
-                                            View Details
-                                        </Link>
-                                    </div>
+                {!movies.length ? (
+                    <Results resultsClass="results">
+                        <h3 className="noResults">No Recommendations to Display</h3>
+                    </Results>
+                ) : (
+                    <Results resultsClass="results">
+                        <div id="showingFor">
+                            <h3>Showing Recommendations For</h3>
+                            <div className="singleResult">
+                                <img src={`https://image.tmdb.org/t/p/w500${master.poster_path}`} alt="Film Pic" />
+                                <h5>{master.title}</h5>
+                                <p className="filmYear">({masterFormattedDate})</p>
+                                <div id="showingForButtons">
+                                    <button className={"btn btn-danger saveMovie"} onClick={() => this.saveMovie(master)}>{"Add to Favorites"}</button>
+                                    <Link onClick={() => this.props.setState({film: master})} to="/singleFilm" className={"btn btn-danger viewDetails"}>
+                                        View Details
+                                    </Link>
                                 </div>
                             </div>
+                        </div>
 
-                            <h3 id="yourRecs">Your Recommendations</h3>
+                        <h3 id="yourRecs">Your Recommendations</h3>
 
-                            {movies.map((movie, i) => {
-                                let formattedDate = Moment(movie.release_date).format("YYYY")
-                                movie.type = "movie"
-                                return (
-                                    <SingleResult
-                                        key={i}
-                                        title={movie.title}
-                                        year={formattedDate}
-                                        filmImg={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                        dbBtnText={"Add to Favorites"}
-                                        btnClassNames={"btn btn-danger saveMovie"}
-                                        detailsClickFunc={ () => this.props.setState({film: movie}) }
-                                        dbClickFunc={() => this.saveMovie(movie)}
-                                    />
-                                )
-                            })}
-                        </Results>
-                    )}
-
-                </div>
+                        {movies.map((movie, i) => {
+                            let formattedDate = Moment(movie.release_date).format("YYYY")
+                            movie.type = "movie"
+                            return (
+                                <SingleResult
+                                    key={i}
+                                    title={movie.title}
+                                    year={formattedDate}
+                                    filmImg={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                    dbBtnText={"Add to Favorites"}
+                                    btnClassNames={"btn btn-danger saveMovie"}
+                                    detailsClickFunc={ () => this.props.setState({film: movie}) }
+                                    dbClickFunc={() => this.saveMovie(movie)}
+                                />
+                            )
+                        })}
+                    </Results>
+                )}
             </Container>
         )
     }

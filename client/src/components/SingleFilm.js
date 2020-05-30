@@ -172,40 +172,38 @@ export default class SingleFilm extends Component {
 
         return (
             <Container>
-                <div className="contentHolder">
-                    <div id="filmDetails">
+                <div id="filmDetails">
 
-                        <div className="col-md-4">
-                            <img id="filmDetailsPic" src={`https://image.tmdb.org/t/p/w500${data.film.poster_path}`} alt="Film Pic" />
-                        </div>
+                    <div className="col-md-4">
+                        <img id="filmDetailsPic" src={`https://image.tmdb.org/t/p/w500${data.film.poster_path}`} alt="Film Pic" />
+                    </div>
 
-                        <div className="col-md-8">
-                            <div id="data">
-                                <h3>{data.film.title === undefined ? data.film.name : data.film.title}</h3>
-                                <p><span>Release Date:</span> &nbsp;{formattedDate}</p>
-                                <p><span>Rating:</span> &nbsp;{rating}</p>
-                                <p><span>Genres:</span> &nbsp;{genres.join(", ")}</p>
-                                <p><span>Summary:</span> &nbsp;{data.film.overview}</p>
-                                <button className={"btn btn-danger saveMovie"} onClick={() => this.saveFav(data.film)}>Add to Favorites</button>
+                    <div className="col-md-8">
+                        <div id="data">
+                            <h3>{data.film.title === undefined ? data.film.name : data.film.title}</h3>
+                            <p><span>Release Date:</span> &nbsp;{formattedDate}</p>
+                            <p><span>Rating:</span> &nbsp;{rating}</p>
+                            <p><span>Genres:</span> &nbsp;{genres.join(", ")}</p>
+                            <p><span>Summary:</span> &nbsp;{data.film.overview}</p>
+                            <button className={"btn btn-danger saveMovie"} onClick={() => this.saveFav(data.film)}>Add to Favorites</button>
 
-                                <hr/>
+                            <hr/>
 
-                                <h5 className="text-center">Actors</h5>
-                                <div id="filmActors">
-                                    {actors.map((actor, i) => {
-                                        return (
-                                            <div key={i} className="singleActor">
-                                                <img className="singleActorPic" src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt="Actor Pic" />
-                                                <h5>{actor.name}</h5>
-                                                <p className="characterName">Character: {actor.character}</p>
-                                            </div>
-                                        )
-                                    })}
-                                </div>
+                            <h5 className="text-center">Actors</h5>
+                            <div id="filmActors">
+                                {actors.map((actor, i) => {
+                                    return (
+                                        <div key={i} className="singleActor">
+                                            <img className="singleActorPic" src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt="Actor Pic" />
+                                            <h5>{actor.name}</h5>
+                                            <p className="characterName">Character: {actor.character}</p>
+                                        </div>
+                                    )
+                                })}
                             </div>
                         </div>
-                        
                     </div>
+                    
                 </div>
             </Container>
         )

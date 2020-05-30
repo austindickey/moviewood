@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
 function Navbar(props) {
@@ -17,9 +17,11 @@ function Navbar(props) {
 
   return (
     <nav className="navbar navbar-expand-lg">
+
       <a className="logo" href="/home">
-        <img src={window.location.origin + "/img/logo.png"} alt="Logo"/>
+        <img src={window.location.origin + "/img/logo.png"} alt="Logo" />
       </a>
+
       <div className="navbar-nav">
         <Link onClick={() => getRoute("/home")} to="/home" className={route === "/home" ? "nav-link active" : "nav-link"}>
           Home
@@ -39,14 +41,14 @@ function Navbar(props) {
       </div>
 
       {!props.isLoggedIn ? (
-          <div/>
+        <div/>
       ) : (
         <div class="navbar-nav ml-auto">
           <span id="loggedInAs"><span>Logged in as:</span> &nbsp;{props.username}</span>
           <button className="btn btn-danger mb-2" id="logoutButton" onClick={() => logoutSubmit()}>Logout</button>
         </div>
       )}
-      
+
     </nav>
   )
 }
