@@ -82,7 +82,6 @@ export default class SingleFilm extends Component {
             return <Redirect to={this.state.redirect} />
         }
 
-
         const data = this.props
         let rating = this.state.rating
         let actors = this.state.actors
@@ -94,79 +93,83 @@ export default class SingleFilm extends Component {
             switch (genres[i]) {
                 case 28:
                     genres[i] = "Action"
-                    break;
+                    break
 
                 case 12:
                     genres[i] = "Adventure"
-                    break;
+                    break
 
                 case 16:
                     genres[i] = "Animation"
-                    break;
+                    break
 
                 case 35:
                     genres[i] = "Comedy"
-                    break;
+                    break
 
                 case 80:
                     genres[i] = "Crime"
-                    break;
+                    break
 
                 case 99:
                     genres[i] = "Documentary"
-                    break;
+                    break
 
                 case 18:
                     genres[i] = "Drama"
-                    break;
+                    break
 
                 case 10751:
                     genres[i] = "Family"
-                    break;
+                    break
 
                 case 14:
                     genres[i] = "Fantasy"
-                    break;
+                    break
 
                 case 36:
                     genres[i] = "History"
-                    break;
+                    break
 
                 case 27:
                     genres[i] = "Horror"
-                    break;
+                    break
 
                 case 10402:
                     genres[i] = "Music"
-                    break;
+                    break
 
                 case 9648:
                     genres[i] = "Mystery"
-                    break;
+                    break
 
                 case 10749:
                     genres[i] = "Romance"
-                    break;
+                    break
 
                 case 878:
                     genres[i] = "Science Fiction"
-                    break;
+                    break
 
                 case 10770:
                     genres[i] = "TV Movie"
-                    break;
+                    break
 
                 case 53:
                     genres[i] = "Thriller"
-                    break;
+                    break
 
                 case 10752:
                     genres[i] = "War"
-                    break;
+                    break
 
                 case 37:
                     genres[i] = "Western"
-                    break;
+                    break
+                
+                default:
+                    genres[i] = "Action"
+                    break
             }
         }
 

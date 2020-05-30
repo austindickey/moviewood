@@ -43,7 +43,7 @@ function Navbar(props) {
       {!props.isLoggedIn ? (
         <div/>
       ) : (
-        <div class="navbar-nav ml-auto">
+        <div className="navbar-nav ml-auto">
           <span id="loggedInAs"><span>Logged in as:</span> &nbsp;{props.username}</span>
           <button className="btn btn-danger mb-2" id="logoutButton" onClick={() => logoutSubmit()}>Logout</button>
         </div>

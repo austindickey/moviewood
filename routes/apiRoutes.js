@@ -229,6 +229,106 @@ function featuresSearch(req, res) {
     
 }
 
+function favoriteMovieRecommendations(req, res) {
+    const tasteDiveApiKey = process.env.tasteDiveApiKey
+    const tmdbApiKey = process.env.tmdbApiKey
+    let data = req.params.movieNames
+    let searchQuery = data.split(",").join("%2C+")
+    let movieNames = data.split(",")
+    
+    const url = `https://tastedive.com/api/similar?type=movies&q=${searchQuery}&k=${tasteDiveApiKey}`
+
+    axios.get(url)
+        .then(response => {
+            let recommendations = response.data.Similar.Results
+            let movieData = []
+            const promiseArr = []
+
+            // Creating the promises urls for the recommendations
+            for (let i = 0; i < recommendations.length; i++) {
+
+                movieNames.push(recommendations[i].Name.toLowerCase())
+                const singleUrl = `https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&language=en-US&page=1&query=${recommendations[i].Name}`
+                promiseArr.push(axios.get(singleUrl))
+
+            }
+
+            // Runs All Promises
+            Promise.all(promiseArr).then(output => {
+                        
+                for (let x = 0; x < output.length; x++) {
+                    let single = output[x].data.results
+
+                    for (let z = 0; z < single.length; z++) {
+                        if (movieNames.includes(single[z].title.toLowerCase())) {
+                            single[z].type = "movie"
+                            movieData.push(single[z])
+                            break
+                        }
+                    }
+
+                }
+
+                res.send(movieData)
+
+            })
+
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+function favoriteShowRecommendations(req, res) {
+    const tasteDiveApiKey = process.env.tasteDiveApiKey
+    const tmdbApiKey = process.env.tmdbApiKey
+    let data = req.params.showNames
+    let searchQuery = data.split(",").join("%2C+")
+    let showNames = data.split(",")
+    
+    const url = `https://tastedive.com/api/similar?type=shows&q=${searchQuery}&k=${tasteDiveApiKey}`
+
+    axios.get(url)
+        .then(response => {
+            let recommendations = response.data.Similar.Results
+            let showData = []
+            const promiseArr = []
+
+            // Creating the promises urls for the recommendations
+            for (let i = 0; i < recommendations.length; i++) {
+
+                showNames.push(recommendations[i].Name.toLowerCase())
+                const singleUrl = `https://api.themoviedb.org/3/search/tv?api_key=${tmdbApiKey}&language=en-US&page=1&query=${recommendations[i].Name}`
+                promiseArr.push(axios.get(singleUrl))
+
+            }
+
+            // Runs All Promises
+            Promise.all(promiseArr).then(output => {
+                        
+                for (let x = 0; x < output.length; x++) {
+                    let single = output[x].data.results
+
+                    for (let z = 0; z < single.length; z++) {
+                        if (showNames.includes(single[z].name.toLowerCase())) {
+                            single[z].type = "show"
+                            showData.push(single[z])
+                            break
+                        }
+                    }
+
+                }
+
+                res.send(showData)
+
+            })
+
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
 router.get("/api/movie/:search", movieSearch)
 
 router.get("/api/tv/:search", showSearch)
@@ -242,6 +342,10 @@ router.get("/api/rating/movie/:filmId", getRatingMovie)
 router.get("/api/rating/tv/:filmId", getRatingTV)
 
 router.get("/search/:type/:adults/:genres/:year", featuresSearch)
+
+router.get("/api/favorites/movies/recommendations/:movieNames", favoriteMovieRecommendations)
+
+router.get("/api/favorites/shows/recommendations/:showNames", favoriteShowRecommendations)
 
 router.post("/add/:username", users.addFavorites)
 
