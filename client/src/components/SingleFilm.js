@@ -90,6 +90,9 @@ export default class SingleFilm extends Component {
         let formattedDate = Moment(data.film.release_date === undefined ? data.film.first_air_date : data.film.release_date).format("MMMM Do, YYYY")
 
         for (let i = 0; i < genres.length; i++) {
+
+            let defaultValue = genres[i]
+
             switch (genres[i]) {
                 case 28:
                     genres[i] = "Action"
@@ -168,7 +171,7 @@ export default class SingleFilm extends Component {
                     break
                 
                 default:
-                    genres[i] = "Action"
+                    genres[i] = defaultValue
                     break
             }
         }

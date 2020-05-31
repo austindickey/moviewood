@@ -1,0 +1,35 @@
+/* =================================
+        Mobile Responsiveness
+================================= */
+
+@media (max-width: 768px) {
+    .navbar-nav a::after {content: "";}
+    #homeLogo img {width: 40%; height: 40%;}
+    #formBody {width: 55%;}
+    .favResults2 {margin-top: 0;}
+    #data {padding: 0;}
+}
+
+@media (max-width: 414px) {
+    #homeLogo img {width: 60%; height: 60%;}
+    #aboutUs {padding: 35px;}
+    .singleResult h5 {max-width: 165px;}
+    .singleResult img {min-width: 165px; min-height: 248px; max-width: 165px; max-height: 248px;}
+    .buttonHolder{max-width: 165px;}
+    #data h3 {margin-top: 15px;}
+    #filmActors h5 {max-width: 155px;}
+    .singleActorPic {min-width: 155px; min-height: 233px; max-width: 155px; max-height: 233px;}
+    .characterName {max-width: 155px;}
+    #formBody {width: 80%;}
+}
+
+@media (max-width: 375px) {
+    #homeLogo img {width: 75%; height: 75%;}
+    .singleResult h5 {max-width: 145px;}
+    .singleResult img {min-width: 145px; min-height: 218px; max-width: 145px; max-height: 218px;}
+    .buttonHolder{max-width: 145px;}
+    #filmActors h5 {max-width: 135px;}
+    .singleActorPic {min-width: 135px; min-height: 203px; max-width: 135px; max-height: 203px;}
+    .characterName {max-width: 135px;}
+    #showingForButtons button {margin-bottom: 10px;}
+}

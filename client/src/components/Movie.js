@@ -100,7 +100,7 @@ class Movie extends React.Component {
                     <Results resultsClass="results">
                         <div id="showingFor">
                             <h3>Showing Recommendations For</h3>
-                            <div className="singleResult">
+                            <div className="showingForFilmData">
                                 <img src={`https://image.tmdb.org/t/p/w500${master.poster_path}`} alt="Film Pic" />
                                 <h5>{master.title}</h5>
                                 <p className="filmYear">({masterFormattedDate})</p>

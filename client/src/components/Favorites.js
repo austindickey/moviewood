@@ -133,7 +133,7 @@ export default class Favorites extends Component {
                                 <h3 className="noResults">No Favorite TV Shows Have Been Saved</h3>
                             </Results>
                         ) : (   
-                            <Results resultsClass="favResults">
+                            <Results resultsClass="favResults2">
 
                                 <h3 id="yourRecs">Your Favorite TV Shows</h3>
 
