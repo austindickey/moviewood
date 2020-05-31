@@ -22,6 +22,11 @@ export default class LoginBox extends Component {
                 username: data.username,
                 isLoggedIn: true
             })
+        } else if (data.username === name && pass === "") {
+            this.setState({
+                password: ""
+            })
+            alert("The password field was blank.")
         } else if (data.username === name && data.password !== pass) {
             this.setState({password: ""})
             alert("The password you entered was incorrect.")
