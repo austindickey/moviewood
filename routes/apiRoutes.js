@@ -207,7 +207,7 @@ function featuresSearch(req, res) {
     let genres= req.params.genres
     let year = req.params.year
     
-    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&language=en-US&sort_by=popularity.desc&include_adult=${adults}&include_video=false&page=1&with_genres=${genres}&year=${year}`
+    let url
 
     // Handles the logic for deciding which api call to make
     if (type === "movie" && year === "noYear") {
@@ -216,6 +216,8 @@ function featuresSearch(req, res) {
         url = `https://api.themoviedb.org/3/discover/tv?api_key=${tmdbApiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=${genres}&include_null_first_air_dates=false`
     } else if (type === "tv") {
         url = `https://api.themoviedb.org/3/discover/tv?api_key=${tmdbApiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=${genres}&include_null_first_air_dates=false&first_air_date_year=${year}`
+    } else {
+        url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&language=en-US&sort_by=popularity.desc&include_adult=${adults}&include_video=false&page=1&with_genres=${genres}&primary_release_year=${year}`
     }
 
     axios.get(url)
