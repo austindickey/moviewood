@@ -11,6 +11,7 @@ import FeatureForm from "./components/pages/FeatureForm"
 import ShowFavorites from "./components/pages/ShowFavorites"
 import FeatureResults from "./components/pages/FeatureResults"
 import SingleFilm from "./components/SingleFilm"
+import ShowWatchList from "./components/pages/ShowWatchList"
 
 function App() {
   const [state,setState] = useState({
@@ -37,6 +38,7 @@ function App() {
         <Route exact path="/features" component={() => <FeatureForm isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
         <Route exact path="/search" component={() => <FeatureResults username={state.username} searchResults={state.searchResults} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
         <Route exact path="/favorites" component={() => <ShowFavorites username={state.username} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
+        <Route exact path="/watchlist" component={() => <ShowWatchList username={state.username} isLoggedIn={state.isLoggedIn} setState={updateState}/>} />
         <Route exact path="/singleFilm" component={() => <SingleFilm username={state.username} isLoggedIn={state.isLoggedIn} film={state.film}/>} />
       </div>
     </Router>

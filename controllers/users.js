@@ -52,5 +52,25 @@ module.exports = {
       .findOneAndUpdate({ username: req.params.username }, { $pull: { favorites: { id: parseInt(req.params.id) } } }, {new: true})
       .then(dbModel => res.send(dbModel))
       .catch(err => res.status(422).json(err))
+  },
+  addToWatchList: function(req, res) {
+    db.Users
+      .findOneAndUpdate({username: req.params.username}, { $push: { watchList: req.body } })
+      .populate("film")
+      .then(dbModel => res.send(dbModel))
+      .catch(err => res.status(422).json(err))
+  },
+  removeSingleWatchListItem: function(req, res) {
+    db.Users
+      .findOneAndUpdate({ username: req.params.username }, { $pull: { watchList: { id: parseInt(req.params.id) } } }, {new: true})
+      .then(dbModel => res.send(dbModel))
+      .catch(err => res.status(422).json(err))
+  },
+  showWatchList: function(req, res) {
+    db.Users
+      .findOne({username: req.params.username})
+      .populate("film")
+      .then(dbModel => res.send(dbModel))
+      .catch(err => res.status(422).json(err))
   }
 }

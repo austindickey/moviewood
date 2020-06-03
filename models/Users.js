@@ -18,6 +18,10 @@ const usersSchema = new Schema({
   favorites: {
     type: Array,
     ref: "Film"
+  },
+  watchList: {
+    type: Array,
+    ref: "Film"
   }
 })
 

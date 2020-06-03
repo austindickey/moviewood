@@ -2,6 +2,10 @@
         Mobile Responsiveness
 ================================= */
 
+@media (max-width: 1150px) {
+    .divider {display: none;}
+}
+
 @media (max-width: 768px) {
     .loggedInTrue {position: relative; margin: 0 auto;}
     #logoutButton {margin: 0;}

@@ -76,6 +76,16 @@ function Navbar(props) {
           </li>
 
           <li className="nav-item">
+            <span className="nav-link divider"/>
+          </li>
+
+          <li className="nav-item">
+            <Link onClick={() => getRoute("/watchlist")} to="/watchlist" className={route === "/watchlist" ? "nav-link active" : "nav-link"}>
+              Your Watchlist
+            </Link>
+          </li>
+
+          <li className="nav-item">
             {!props.isLoggedIn ? (
               <div className="loggedInFalse"/>
             ) : (

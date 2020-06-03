@@ -355,6 +355,12 @@ router.post("/remove/:username/:id", users.removeSingleFavorite)
 
 router.get("/favorites/:username", users.findFavorites)
 
+router.post("/add/watchlist/:username", users.addToWatchList)
+
+router.post("/remove/watchlist/:username/:id", users.removeSingleWatchListItem)
+
+router.get("/watchlist/:username", users.showWatchList)
+
 router.post("/create", users.create)
 
 router.get("/login/:username", users.login)
