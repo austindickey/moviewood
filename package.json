@@ -4,7 +4,7 @@
   "description": "Here you can find similar movies or tv shows to your favorites to watch next.",
   "main": "server.js",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "concurrently": "^5.2.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
