@@ -11,7 +11,7 @@ export default class Search extends Component {
     }
 
     componentDidMount() {
-        const logCheck = this.props.isLoggedIn
+        // const logCheck = this.props.isLoggedIn
 
         if (!logCheck) {
             this.setState({ redirect: "/" })
