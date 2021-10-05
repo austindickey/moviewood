@@ -15,18 +15,18 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes)
 
 // Connect to the JawsDB
-var mysql = require('mysql');
-var connection = mysql.createConnection(process.env.JAWSDB_URL || "mysql://lpmvc14uv3ceukz9:l14v37tytqnzywfk@z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dxswhu8ayqvz8ewh")
+// var mysql = require('mysql');
+// var connection = mysql.createConnection(process.env.JAWSDB_URL || "mysql://lpmvc14uv3ceukz9:l14v37tytqnzywfk@z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dxswhu8ayqvz8ewh")
 
-connection.connect()
+// connection.connect()
 
-connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-  if (err) throw err
+// connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+//   if (err) throw err
 
-  console.log('The solution is: ', rows[0].solution)
-});
+//   console.log('The solution is: ', rows[0].solution)
+// });
 
-connection.end()
+// connection.end()
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/moviewood", {
