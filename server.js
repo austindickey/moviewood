@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const routes = require("./routes/apiRoutes")
 const app = express()
 const PORT = process.env.PORT || 3001
+const uri = process.env.MONGODB_URI;
 
 // Middleware
 app.use(express.urlencoded({ extended: true }))
@@ -15,7 +16,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes)
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb+srv://austind10:Hotatl2323@moviewood.8xgcy.mongodb.net/UserData", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://austind10:Hotatl2323@moviewood.8xgcy.mongodb.net/UserData?retryWrites=true&w=majority", {
   useFindAndModify: false,
   useUnifiedTopology: true,
   useNewUrlParser: true
