@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes)
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://austind10:Hotatl2323@moviewood.8xgcy.mongodb.net/UserData", {
+mongoose.connect("mongodb+srv://austind10:Hotatl2323@moviewood.8xgcy.mongodb.net/UserData", {
   useFindAndModify: false,
   useUnifiedTopology: true,
   useNewUrlParser: true
