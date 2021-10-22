@@ -16,11 +16,15 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes)
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.JAWSDB_URI || "mysql://lpmvc14uv3ceukz9:l14v37tytqnzywfk@z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dxswhu8ayqvz8ewh", {
-  useFindAndModify: false,
-  useUnifiedTopology: true,
-  useNewUrlParser: true
-})
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/moviewood',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+)
 
 // Start the API server
 app.listen(PORT, function() {
